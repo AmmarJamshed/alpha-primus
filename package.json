@@ -14,7 +14,8 @@
     "discovery:import-json": "tsx scripts/discovery/import-json.ts",
     "discovery:validate": "tsx scripts/discovery/validate-websites.ts",
     "discovery:report": "tsx scripts/discovery/generate-report.ts",
-    "scrape:npi": "node scripts/scrape-npi-providers.mjs"
+    "scrape:npi": "node scripts/scrape-npi-providers.mjs",
+    "sync:providers": "node scripts/sync-providers.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

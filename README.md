@@ -49,14 +49,27 @@ cp .env.example .env.local
 
 ## Discovery & Import Pipeline
 
+Automated bi-weekly sync via GitHub Actions (`.github/workflows/bi-weekly-provider-sync.yml`):
+
+| Source | Data |
+|--------|------|
+| **CMS NPI Registry** | Licensed therapists, psychologists, counselors, social workers |
+| **OpenStreetMap** | Life coaches, executive coaches, wellness centers, support groups, community centres |
+
+```bash
+# Full sync: fetch new listings, remove stale/expired (28+ days)
+npm run sync:providers
+
+# Custom limits
+node scripts/sync-providers.mjs --npi-per-state=100 --osm-per-state=40
+```
+
+Manual CSV/JSON import:
+
 ```bash
 npx tsx scripts/discovery/import-csv.ts data/sample.csv
 npx tsx scripts/discovery/import-json.ts data/sample.json
-npx tsx scripts/discovery/validate-websites.ts
-npx tsx scripts/discovery/generate-report.ts
 ```
-
-Imported records go to `scripts/discovery/output/import-queue.json` for admin approval.
 
 ## Project Structure
 

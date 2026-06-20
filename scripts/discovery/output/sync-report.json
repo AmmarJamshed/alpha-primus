@@ -1,0 +1,19 @@
+{
+  "synced_at": "2026-06-20T21:14:43.535Z",
+  "stale_threshold_days": 28,
+  "before_count": 500,
+  "after_count": 500,
+  "scraped_count": 500,
+  "removed_count": 0,
+  "removed_ids": [],
+  "by_source": {
+    "cms_npi_registry": 500
+  },
+  "by_state": {
+    "CA": 100,
+    "TX": 100,
+    "FL": 100,
+    "NY": 100,
+    "IL": 100
+  }
+}

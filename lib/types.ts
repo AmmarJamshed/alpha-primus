@@ -46,7 +46,9 @@ export interface Provider {
   updated_at: string;
   npi_number?: string;
   source?: string;
+  source_id?: string;
   source_url?: string;
+  last_seen_at?: string;
 }
 
 export interface Retreat {
