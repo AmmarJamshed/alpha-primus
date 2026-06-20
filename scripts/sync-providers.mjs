@@ -3,7 +3,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { isStale, nowIso, providerKey, STALE_DAYS } from "./scrape/lib/utils.mjs";
 import { scrapeNpi } from "./scrape/sources/npi.mjs";
-import { scrapeOsm } from "./scrape/sources/osm.mjs";
+import { scrapeSerpApi } from "./scrape/sources/serpapi.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -18,9 +18,9 @@ const args = Object.fromEntries(
 );
 
 const NPI_PER_STATE = parseInt(args["npi-per-state"] ?? "100", 10);
-const OSM_PER_STATE = parseInt(args["osm-per-state"] ?? "25", 10);
+const SEARCH_PER_STATE = parseInt(args["search-per-state"] ?? "30", 10);
 const SKIP_NPI = args["skip-npi"] === "true";
-const SKIP_OSM = args["skip-osm"] === "true";
+const SKIP_SEARCH = args["skip-search"] === "true";
 
 function normalizeKey(p) {
   const source = p.source ?? "cms_npi_registry";
@@ -58,17 +58,16 @@ function mergeProviders(existing, scraped) {
       last_seen_at: seenAt,
       claimed: prev?.claimed ?? false,
       featured: prev?.featured ?? incoming.featured,
-      rating: prev?.rating ?? 0,
-      review_count: prev?.review_count ?? 0,
+      rating: incoming.rating || prev?.rating || 0,
+      review_count: incoming.review_count || prev?.review_count || 0,
     };
 
     delete record._dedupe_key;
     merged.push(record);
   }
 
-  // Keep claimed profiles even if temporarily missing from source scrape
   for (const prev of existing) {
-    const key = providerKey(prev.source ?? "legacy", prev.source_id ?? prev.id);
+    const key = normalizeKey(prev);
     if (scrapedKeys.has(key)) continue;
     if (prev.claimed && !isStale(prev.last_seen_at, STALE_DAYS * 2)) {
       merged.push({ ...prev, updated_at: seenAt });
@@ -86,7 +85,7 @@ function mergeProviders(existing, scraped) {
   return merged;
 }
 
-function buildReport(before, after, scraped, removed) {
+function buildReport(before, after, scraped, removed, meta = {}) {
   const bySource = {};
   for (const p of after) {
     bySource[p.source] = (bySource[p.source] ?? 0) + 1;
@@ -107,6 +106,7 @@ function buildReport(before, after, scraped, removed) {
         after.filter((p) => p.state === s).length,
       ]),
     ),
+    ...meta,
   };
 }
 
@@ -116,13 +116,13 @@ async function main() {
   const existing = loadExisting();
   const existingKeys = new Set(existing.map(normalizeKey));
 
-  console.log("Source 1: CMS NPI Registry (therapists, counselors, psychologists)");
+  console.log("Source 1: CMS NPI Registry (licensed therapists & counselors)");
   const npi = SKIP_NPI ? [] : await scrapeNpi({ perState: NPI_PER_STATE });
 
-  console.log("\nSource 2: OpenStreetMap (coaches, clinics, support groups, wellness)");
-  const osm = SKIP_OSM ? [] : await scrapeOsm({ perState: OSM_PER_STATE });
+  console.log("\nSource 2: SerpAPI Google Maps (coaches, clinics, support groups, wellness)");
+  const search = SKIP_SEARCH ? [] : await scrapeSerpApi({ perState: SEARCH_PER_STATE });
 
-  const scraped = [...npi, ...osm];
+  const scraped = [...npi, ...search];
   const merged = mergeProviders(existing, scraped);
 
   const mergedKeys = new Set(merged.map(normalizeKey));
@@ -136,12 +136,15 @@ async function main() {
 
   writeFileSync(PROVIDERS_PATH, JSON.stringify(merged, null, 2));
 
-  const report = buildReport(existing, merged, scraped, removed);
+  const report = buildReport(existing, merged, scraped, removed, {
+    npi_count: npi.length,
+    search_count: search.length,
+  });
   writeFileSync(REPORT_PATH, JSON.stringify(report, null, 2));
 
   console.log("\n--- Sync complete ---");
   console.log(`Existing:  ${existing.length}`);
-  console.log(`Scraped:   ${scraped.length} (NPI: ${npi.length}, OSM: ${osm.length})`);
+  console.log(`Scraped:   ${scraped.length} (NPI: ${npi.length}, SerpAPI: ${search.length})`);
   console.log(`Final:     ${merged.length}`);
   console.log(`Removed:   ${removed.length} stale/expired listings`);
   console.log(`Report:    ${REPORT_PATH}`);

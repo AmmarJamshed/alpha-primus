@@ -10,10 +10,10 @@ on:
         description: "NPI providers per launch state"
         required: false
         default: "100"
-      osm_per_state:
-        description: "OpenStreetMap providers per launch state"
+      search_per_state:
+        description: "SerpAPI Google Maps providers per launch state"
         required: false
-        default: "25"
+        default: "30"
 
 permissions:
   contents: write
@@ -32,11 +32,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Sync providers from NPI + OpenStreetMap
+      - name: Sync providers (NPI + SerpAPI Google Maps)
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: |
           node scripts/sync-providers.mjs \
             --npi-per-state=${{ github.event.inputs.npi_per_state || '100' }} \
-            --osm-per-state=${{ github.event.inputs.osm_per_state || '25' }}
+            --search-per-state=${{ github.event.inputs.search_per_state || '30' }}
 
       - name: Upload sync report
         uses: actions/upload-artifact@v4
@@ -54,9 +56,9 @@ jobs:
             exit 0
           fi
           git commit -m "$(cat <<'EOF'
-chore: bi-weekly provider sync from NPI and OpenStreetMap
+chore: bi-weekly provider sync from NPI and SerpAPI
 
-Automated refresh adds new listings and removes stale/expired providers not seen in 28 days.
+Automated refresh adds new Google Maps listings and removes stale providers not seen in 28 days.
 EOF
 )"
           git push

@@ -220,12 +220,21 @@ export default async function ProviderPage({ params }: ProviderPageProps) {
                 ) : null}
                 {"source_url" in provider && provider.source_url ? (
                   <a
-                    href={provider.source_url}
+                    href={
+                      provider.source === "serpapi_google_maps"
+                        ? `https://www.google.com/maps/place/?q=place_id:${provider.source_id}`
+                        : provider.source_url
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-muted-foreground hover:text-[#0B1F3A]"
                   >
-                    <Globe className="h-4 w-4" /> Verify on NPI Registry
+                    <Globe className="h-4 w-4" />{" "}
+                    {provider.source === "serpapi_google_maps"
+                      ? "View on Google Maps"
+                      : provider.source === "cms_npi_registry"
+                        ? "Verify on NPI Registry"
+                        : "View Source"}
                     <ExternalLink className="h-3 w-3" />
                   </a>
                 ) : null}

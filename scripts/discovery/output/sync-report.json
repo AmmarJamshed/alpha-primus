@@ -1,19 +1,22 @@
 {
-  "synced_at": "2026-06-20T21:14:43.535Z",
+  "synced_at": "2026-06-20T21:16:29.176Z",
   "stale_threshold_days": 28,
   "before_count": 500,
-  "after_count": 500,
-  "scraped_count": 500,
+  "after_count": 625,
+  "scraped_count": 625,
   "removed_count": 0,
   "removed_ids": [],
   "by_source": {
-    "cms_npi_registry": 500
+    "cms_npi_registry": 500,
+    "serpapi_google_maps": 125
   },
   "by_state": {
-    "CA": 100,
-    "TX": 100,
-    "FL": 100,
-    "NY": 100,
-    "IL": 100
-  }
+    "CA": 125,
+    "TX": 125,
+    "FL": 125,
+    "NY": 125,
+    "IL": 125
+  },
+  "npi_count": 500,
+  "search_count": 125
 }

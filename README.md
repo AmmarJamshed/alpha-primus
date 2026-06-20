@@ -54,14 +54,16 @@ Automated bi-weekly sync via GitHub Actions (`.github/workflows/bi-weekly-provid
 | Source | Data |
 |--------|------|
 | **CMS NPI Registry** | Licensed therapists, psychologists, counselors, social workers |
-| **OpenStreetMap** | Life coaches, executive coaches, wellness centers, support groups, community centres |
+| **SerpAPI Google Maps** | Life coaches, executive coaches, wellness centers, support groups, retreats |
+
+Set `SERPAPI_KEY` in GitHub repo secrets and locally in `.env.local` for sync runs.
 
 ```bash
-# Full sync: fetch new listings, remove stale/expired (28+ days)
+# Full sync (both sources)
 npm run sync:providers
 
-# Custom limits
-node scripts/sync-providers.mjs --npi-per-state=100 --osm-per-state=40
+# Custom limits (~80 SerpAPI calls per run on default settings — fits free tier)
+node scripts/sync-providers.mjs --npi-per-state=100 --search-per-state=30
 ```
 
 Manual CSV/JSON import:
