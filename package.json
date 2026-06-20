@@ -16,7 +16,8 @@
     "discovery:report": "tsx scripts/discovery/generate-report.ts",
     "scrape:npi": "node scripts/scrape-npi-providers.mjs",
     "sync:providers": "node scripts/sync-providers.mjs --sync-mode=providers --max-serpapi-calls=90",
-    "sync:retreats-events": "node scripts/sync-providers.mjs --sync-mode=retreats-events --max-serpapi-calls=90"
+    "sync:retreats-events": "node scripts/sync-providers.mjs --sync-mode=retreats-events --max-serpapi-calls=90",
+    "sanitize:urls": "node scripts/sanitize-listing-urls.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

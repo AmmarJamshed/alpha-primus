@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Calendar, Clock, ExternalLink, MapPin } from "lucide-react";
+import { Calendar, Clock, ExternalLink, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAllEventSlugs, getEventBySlug } from "@/lib/data";
 import { createMetadata } from "@/lib/seo";
@@ -31,6 +31,8 @@ export default async function EventPage({ params }: EventPageProps) {
   const { slug } = await params;
   const event = getEventBySlug(slug);
   if (!event) notFound();
+
+  const mapsUrl = event.source_url || event.registration_url;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
@@ -75,14 +77,25 @@ export default async function EventPage({ params }: EventPageProps) {
       </p>
 
       <div className="mt-8 flex flex-wrap gap-3">
-        {event.registration_url && (
+        {mapsUrl && (
           <Button asChild className="rounded-full bg-[#0B1F3A]">
-            <a
-              href={event.registration_url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Register <ExternalLink className="ml-2 h-4 w-4" />
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
+              View on Google Maps <ExternalLink className="ml-2 h-4 w-4" />
+            </a>
+          </Button>
+        )}
+        {event.website && (
+          <Button asChild variant="outline" className="rounded-full">
+            <a href={event.website} target="_blank" rel="noopener noreferrer">
+              Visit Website <ExternalLink className="ml-2 h-4 w-4" />
+            </a>
+          </Button>
+        )}
+        {event.phone && (
+          <Button asChild variant="outline" className="rounded-full">
+            <a href={`tel:${event.phone.replace(/[^\d+]/g, "")}`}>
+              <Phone className="mr-2 h-4 w-4" />
+              Call {event.phone}
             </a>
           </Button>
         )}

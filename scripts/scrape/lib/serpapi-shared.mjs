@@ -84,7 +84,7 @@ export async function searchAllStates(queries, onResult) {
         apiCalls++;
         const results = await searchMapsCategory(search.q, state);
         for (const result of results) {
-          onResult(result, search, state);
+          await onResult(result, search, state);
         }
         console.log(`  SerpAPI ${state} / ${search.label ?? search.q}: ${results.length} results`);
       } catch (err) {

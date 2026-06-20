@@ -88,6 +88,7 @@ export interface Event {
   city: string;
   state: string;
   organizer: string;
+  website?: string;
   registration_url: string;
   images: string[];
   category: string;

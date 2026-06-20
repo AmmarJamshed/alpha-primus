@@ -6,10 +6,10 @@ import {
 } from "../lib/utils.mjs";
 import {
   parseAddress,
-  normalizeWebsite,
   resultImages,
   searchAllStates,
 } from "../lib/serpapi-shared.mjs";
+import { googleMapsPlaceUrl, resolveWebsite } from "../lib/validate-url.mjs";
 
 export const EVENT_SEARCHES = [
   { q: "wellness workshop", category: "Community Events", label: "Wellness Workshops" },
@@ -19,7 +19,7 @@ export const EVENT_SEARCHES = [
   { q: "mental health workshop", category: "Community Events", label: "Mental Health Workshops" },
 ];
 
-function resultToEvent(result, meta, stateHint, seenAt) {
+async function resultToEvent(result, meta, stateHint, seenAt) {
   const title = result.title?.trim();
   if (!title) return null;
 
@@ -32,7 +32,8 @@ function resultToEvent(result, meta, stateHint, seenAt) {
 
   const slug = `${slugify(title)}-${placeId.slice(-8)}`.slice(0, 100);
   const city = parsed.city || titleCase(stateHint);
-  const website = normalizeWebsite(result.website);
+  const website = await resolveWebsite(result.website);
+  const mapsUrl = googleMapsPlaceUrl(placeId);
   const types = (result.types ?? [result.type]).filter(Boolean).join(", ");
   const location = parsed.street
     ? `${parsed.street}, ${city}, ${state}`
@@ -49,13 +50,14 @@ function resultToEvent(result, meta, stateHint, seenAt) {
     city,
     state,
     organizer: titleCase(title),
-    registration_url: website || `https://www.google.com/maps/place/?q=place_id:${placeId}`,
+    website,
+    registration_url: mapsUrl,
     images: resultImages(result, slug),
     category: meta.category,
     featured: false,
     source: "serpapi_google_maps",
     source_id: placeId,
-    source_url: `https://www.google.com/maps/place/?q=place_id:${placeId}`,
+    source_url: mapsUrl,
     phone: result.phone ?? "",
     rating: result.rating ?? 0,
     review_count: result.reviews ?? 0,
@@ -71,8 +73,8 @@ export async function scrapeEvents() {
   const events = new Map();
   const dedupe = new Set();
 
-  const apiCalls = await searchAllStates(EVENT_SEARCHES, (result, search, state) => {
-    const event = resultToEvent(result, search, state, seenAt);
+  const apiCalls = await searchAllStates(EVENT_SEARCHES, async (result, search, state) => {
+    const event = await resultToEvent(result, search, state, seenAt);
     if (!event) return;
     if (dedupe.has(event._dedupe_key)) return;
 

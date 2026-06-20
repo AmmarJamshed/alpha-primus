@@ -11,6 +11,7 @@ import {
   sleep,
   titleCase,
 } from "../lib/utils.mjs";
+import { googleMapsPlaceUrl, resolveWebsite } from "../lib/validate-url.mjs";
 
 /**
  * One SerpAPI Google Maps search per category per state.
@@ -71,7 +72,7 @@ function hasVirtualServices(result) {
   return result.types?.some((t) => /online/i.test(t)) ?? false;
 }
 
-function resultToProvider(result, meta, stateHint, seenAt) {
+async function resultToProvider(result, meta, stateHint, seenAt) {
   const name = result.title?.trim();
   if (!name) return null;
 
@@ -87,14 +88,8 @@ function resultToProvider(result, meta, stateHint, seenAt) {
   const lat = result.gps_coordinates?.latitude ?? 0;
   const lng = result.gps_coordinates?.longitude ?? 0;
 
-  let website = result.website ?? "";
-  if (website && !website.startsWith("http")) website = `https://${website}`;
-  try {
-    if (website) new URL(website);
-    else website = "";
-  } catch {
-    website = "";
-  }
+  const website = await resolveWebsite(result.website ?? "");
+  const mapsUrl = googleMapsPlaceUrl(placeId);
 
   const specialties = (result.types ?? [result.type]).filter(Boolean).slice(0, 6);
 
@@ -126,7 +121,7 @@ function resultToProvider(result, meta, stateHint, seenAt) {
     review_count: result.reviews ?? 0,
     source: "serpapi_google_maps",
     source_id: placeId,
-    source_url: `https://www.google.com/maps/place/?q=place_id:${placeId}`,
+    source_url: mapsUrl,
     last_seen_at: seenAt,
     created_at: seenAt,
     updated_at: seenAt,
@@ -172,7 +167,7 @@ export async function scrapeSerpApi() {
         const results = await searchMapsCategory(search.q, state);
 
         for (const result of results) {
-          const provider = resultToProvider(result, search, state, seenAt);
+          const provider = await resultToProvider(result, search, state, seenAt);
           if (!provider) continue;
           if (dedupe.has(provider._dedupe_key)) continue;
 
