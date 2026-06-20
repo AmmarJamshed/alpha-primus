@@ -13,6 +13,7 @@ import type {
   SearchFilters,
   Testimonial,
 } from "@/lib/types";
+import { CATEGORY_RELATED } from "@/lib/constants";
 
 export const categories = categoriesData as Category[];
 export const providers = providersData as Provider[];
@@ -74,8 +75,9 @@ export function searchProviders(filters: SearchFilters): Provider[] {
   }
 
   if (filters.category) {
+    const normalized = normalizeCategory(filters.category);
     results = results.filter(
-      (p) => p.category.toLowerCase() === filters.category!.toLowerCase(),
+      (p) => p.category.toLowerCase() === normalized.toLowerCase(),
     );
   }
 
@@ -120,6 +122,74 @@ export function searchProviders(filters: SearchFilters): Provider[] {
   }
 
   return results.sort((a, b) => b.rating - a.rating);
+}
+
+function normalizeCategory(value: string): string {
+  try {
+    return decodeURIComponent(value.replace(/\+/g, " ")).trim();
+  } catch {
+    return value.trim();
+  }
+}
+
+function keywordMatchProviders(category: string, filters: SearchFilters): Provider[] {
+  const keywords = normalizeCategory(category)
+    .toLowerCase()
+    .split(/\s+/)
+    .filter((w) => w.length > 3);
+
+  if (keywords.length === 0) return [];
+
+  return providers.filter((p) => {
+    const haystack = [
+      p.name,
+      p.description,
+      p.category,
+      p.subcategory,
+      ...p.specialties,
+    ]
+      .join(" ")
+      .toLowerCase();
+    return keywords.some((kw) => haystack.includes(kw));
+  });
+}
+
+/** Always returns providers when the exact search is empty — never an empty fallback. */
+export function getAlternativeProviders(
+  filters: SearchFilters,
+  limit = 6,
+): Provider[] {
+  const category = filters.category
+    ? normalizeCategory(filters.category)
+    : undefined;
+
+  if (category) {
+    const related = CATEGORY_RELATED[category] ?? [];
+    for (const relatedCategory of related) {
+      const matches = searchProviders({ ...filters, category: relatedCategory });
+      if (matches.length > 0) {
+        return matches.slice(0, limit);
+      }
+    }
+
+    const keywordMatches = keywordMatchProviders(category, filters);
+    if (keywordMatches.length > 0) {
+      return keywordMatchProviders(category, filters)
+        .sort((a, b) => b.rating - a.rating)
+        .slice(0, limit);
+    }
+  }
+
+  if (filters.state) {
+    const inState = providers.filter((p) => p.state === filters.state);
+    if (inState.length > 0) {
+      return inState.sort((a, b) => b.rating - a.rating).slice(0, limit);
+    }
+  }
+
+  return [...providers]
+    .sort((a, b) => Number(b.featured) - Number(a.featured) || b.rating - a.rating)
+    .slice(0, limit);
 }
 
 export function getSimilarProviders(provider: Provider, limit = 4): Provider[] {

@@ -1,6 +1,6 @@
 import { ProviderCard } from "@/components/providers/provider-card";
 import { SearchFilters } from "@/components/search/search-filters";
-import { categories, providers, searchProviders } from "@/lib/data";
+import { categories, getAlternativeProviders, searchProviders } from "@/lib/data";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
@@ -25,7 +25,9 @@ function getParam(
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const params = await searchParams;
   const query = getParam(params, "q") ?? getParam(params, "query");
-  const category = getParam(params, "category");
+  const category = getParam(params, "category")
+    ? decodeURIComponent(getParam(params, "category")!.replace(/\+/g, " "))
+    : undefined;
   const state = getParam(params, "state");
   const city = getParam(params, "city");
   const specialty = getParam(params, "specialty");
@@ -51,12 +53,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   });
 
   const alternatives =
-    results.length === 0
-      ? searchProviders({
-          category,
-          state,
-        }).slice(0, 6)
-      : [];
+    results.length === 0 ? getAlternativeProviders({ category, state, city, specialty, virtual, inPerson, verified, featured, minRating, query }) : [];
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -110,13 +107,13 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 Help is still available. Try adjusting your filters or explore
                 these nearby options.
               </p>
-              {alternatives.length > 0 && (
+              {alternatives.length > 0 ? (
                 <div className="mt-8 grid gap-6 sm:grid-cols-2">
                   {alternatives.map((provider) => (
                     <ProviderCard key={provider.id} provider={provider} />
                   ))}
                 </div>
-              )}
+              ) : null}
             </div>
           )}
         </div>

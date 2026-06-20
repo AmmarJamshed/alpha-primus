@@ -71,3 +71,34 @@ export const DISCOVERY_CARDS = [
     icon: "mountain",
   },
 ] as const;
+
+/** When a category has no exact listings, search these related categories (in order). */
+export const CATEGORY_RELATED: Record<string, string[]> = {
+  "Personal Development Programs": [
+    "Life Coaches",
+    "Executive Coaches",
+    "Career Coaches",
+    "Leadership Programs",
+    "Mindfulness Programs",
+  ],
+  "Burnout Recovery Programs": [
+    "Therapists",
+    "Support Groups",
+    "Wellness Centers",
+    "Mindfulness Programs",
+  ],
+  "Relationship Coaches": ["Therapists", "Life Coaches", "Support Groups"],
+  "Support Groups": ["Discussion Circles", "Therapists", "Wellness Centers"],
+  "Discussion Circles": ["Support Groups", "Community Events", "Men's Groups", "Women's Groups"],
+  "Men's Groups": ["Support Groups", "Discussion Circles", "Therapists"],
+  "Women's Groups": ["Support Groups", "Discussion Circles", "Therapists"],
+  "Leadership Programs": ["Executive Coaches", "Life Coaches", "Leadership Retreats"],
+  "Mindfulness Programs": ["Wellness Centers", "Therapists", "Wellness Retreats"],
+  "Wellness Centers": ["Mindfulness Programs", "Therapists", "Wellness Retreats"],
+  "Mental Health Clinics": ["Therapists", "Wellness Centers"],
+  "Wellness Retreats": ["Growth Retreats", "Leadership Retreats", "Wellness Centers"],
+  "Leadership Retreats": ["Executive Coaches", "Wellness Retreats", "Leadership Programs"],
+  "Growth Retreats": ["Wellness Retreats", "Life Coaches", "Personal Development Programs"],
+  "Community Events": ["Support Groups", "Discussion Circles", "Wellness Centers"],
+  "Career Coaches": ["Life Coaches", "Executive Coaches"],
+};
