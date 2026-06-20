@@ -1,0 +1,173 @@
+[
+  {
+    "id": "cat-001",
+    "name": "Therapists",
+    "slug": "therapists",
+    "description": "Licensed mental health professionals offering individual, couples, and family therapy for anxiety, depression, trauma, and life transitions.",
+    "icon": "heart-handshake",
+    "featured": true,
+    "sort_order": 1
+  },
+  {
+    "id": "cat-002",
+    "name": "Mental Health Clinics",
+    "slug": "mental-health-clinics",
+    "description": "Multi-provider clinics offering comprehensive psychiatric and psychological care under one roof.",
+    "icon": "building-2",
+    "featured": true,
+    "sort_order": 2
+  },
+  {
+    "id": "cat-003",
+    "name": "Life Coaches",
+    "slug": "life-coaches",
+    "description": "Certified coaches helping clients clarify goals, build confidence, and create meaningful life change.",
+    "icon": "compass",
+    "featured": true,
+    "sort_order": 3
+  },
+  {
+    "id": "cat-004",
+    "name": "Executive Coaches",
+    "slug": "executive-coaches",
+    "description": "Leadership coaches specializing in C-suite development, executive presence, and organizational impact.",
+    "icon": "briefcase",
+    "featured": true,
+    "sort_order": 4
+  },
+  {
+    "id": "cat-005",
+    "name": "Career Coaches",
+    "slug": "career-coaches",
+    "description": "Career strategists guiding job transitions, interview preparation, and professional reinvention.",
+    "icon": "trending-up",
+    "featured": false,
+    "sort_order": 5
+  },
+  {
+    "id": "cat-006",
+    "name": "Relationship Coaches",
+    "slug": "relationship-coaches",
+    "description": "Coaches focused on communication skills, dating, marriage enrichment, and healthy partnership dynamics.",
+    "icon": "users",
+    "featured": true,
+    "sort_order": 6
+  },
+  {
+    "id": "cat-007",
+    "name": "Support Groups",
+    "slug": "support-groups",
+    "description": "Peer-led and facilitator-guided groups for grief, addiction recovery, chronic illness, and shared life challenges.",
+    "icon": "circle-dot",
+    "featured": true,
+    "sort_order": 7
+  },
+  {
+    "id": "cat-008",
+    "name": "Discussion Circles",
+    "slug": "discussion-circles",
+    "description": "Small-group conversations exploring personal growth topics in a safe, structured environment.",
+    "icon": "message-circle",
+    "featured": false,
+    "sort_order": 8
+  },
+  {
+    "id": "cat-009",
+    "name": "Men's Groups",
+    "slug": "mens-groups",
+    "description": "Brotherhood circles where men explore vulnerability, purpose, fatherhood, and emotional resilience.",
+    "icon": "user",
+    "featured": false,
+    "sort_order": 9
+  },
+  {
+    "id": "cat-010",
+    "name": "Women's Groups",
+    "slug": "womens-groups",
+    "description": "Empowerment circles supporting women through career transitions, motherhood, healing, and self-discovery.",
+    "icon": "user-round",
+    "featured": false,
+    "sort_order": 10
+  },
+  {
+    "id": "cat-011",
+    "name": "Burnout Recovery Programs",
+    "slug": "burnout-recovery-programs",
+    "description": "Structured programs helping professionals recover from chronic stress, exhaustion, and work-life imbalance.",
+    "icon": "battery-low",
+    "featured": true,
+    "sort_order": 11
+  },
+  {
+    "id": "cat-012",
+    "name": "Leadership Programs",
+    "slug": "leadership-programs",
+    "description": "Multi-week cohort experiences developing authentic leadership, emotional intelligence, and team influence.",
+    "icon": "crown",
+    "featured": true,
+    "sort_order": 12
+  },
+  {
+    "id": "cat-013",
+    "name": "Mindfulness Programs",
+    "slug": "mindfulness-programs",
+    "description": "Guided meditation, MBSR, and contemplative practices for stress reduction and present-moment awareness.",
+    "icon": "leaf",
+    "featured": false,
+    "sort_order": 13
+  },
+  {
+    "id": "cat-014",
+    "name": "Wellness Centers",
+    "slug": "wellness-centers",
+    "description": "Holistic centers combining therapy, yoga, nutrition, and integrative wellness under one roof.",
+    "icon": "sparkles",
+    "featured": false,
+    "sort_order": 14
+  },
+  {
+    "id": "cat-015",
+    "name": "Personal Development Programs",
+    "slug": "personal-development-programs",
+    "description": "Transformational workshops and courses for self-awareness, habit change, and personal breakthrough.",
+    "icon": "rocket",
+    "featured": false,
+    "sort_order": 15
+  },
+  {
+    "id": "cat-016",
+    "name": "Wellness Retreats",
+    "slug": "wellness-retreats",
+    "description": "Immersive getaways focused on rest, healing, yoga, and holistic rejuvenation in nature settings.",
+    "icon": "mountain",
+    "featured": true,
+    "sort_order": 16
+  },
+  {
+    "id": "cat-017",
+    "name": "Leadership Retreats",
+    "slug": "leadership-retreats",
+    "description": "Off-site intensives for leaders seeking clarity, team alignment, and strategic renewal.",
+    "icon": "flag",
+    "featured": false,
+    "sort_order": 17
+  },
+  {
+    "id": "cat-018",
+    "name": "Growth Retreats",
+    "slug": "growth-retreats",
+    "description": "Experiential retreats combining coaching, adventure, and community for deep personal transformation.",
+    "icon": "sunrise",
+    "featured": true,
+    "sort_order": 18
+  },
+  {
+    "id": "cat-019",
+    "name": "Community Events",
+    "slug": "community-events",
+    "description": "Local gatherings, workshops, and meetups fostering connection and shared learning in your community.",
+    "icon": "calendar-days",
+    "featured": false,
+    "sort_order": 19
+  }
+]

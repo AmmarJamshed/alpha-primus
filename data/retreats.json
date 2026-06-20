@@ -1,0 +1,274 @@
+[
+  {
+    "id": "ret-001",
+    "title": "Sierra Soul Renewal Retreat",
+    "slug": "sierra-soul-renewal-retreat",
+    "description": "A five-day immersive wellness retreat in the Sierra Nevada foothills featuring daily yoga, guided meditation, forest bathing, and farm-to-table meals. Designed for professionals seeking deep rest and nervous system reset.",
+    "location": "Sierra Nevada Foothills Retreat Center",
+    "city": "Nevada City",
+    "state": "CA",
+    "date": "2026-09-12",
+    "duration": "5 days / 4 nights",
+    "price": "$2,450",
+    "organizer": "Pacific Mind Therapy Collective",
+    "website": "https://www.pacificmindtherapycollective.com/retreats",
+    "booking_link": "https://www.pacificmindtherapycollective.com/book/sierra-soul",
+    "images": [
+      "https://picsum.photos/seed/sierra-soul-1/800/600",
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=600&fit=crop"
+    ],
+    "category": "Wellness Retreats",
+    "featured": true
+  },
+  {
+    "id": "ret-002",
+    "title": "Coastal Clarity Leadership Intensive",
+    "slug": "coastal-clarity-leadership-intensive",
+    "description": "An executive leadership retreat on the Monterey coast combining strategic planning sessions, equine-assisted coaching, and oceanfront mindfulness practices for senior leaders ready to lead with authenticity.",
+    "location": "Monterey Bay Leadership Lodge",
+    "city": "Monterey",
+    "state": "CA",
+    "date": "2026-10-03",
+    "duration": "3 days / 2 nights",
+    "price": "$3,800",
+    "organizer": "Summit Executive Coaching Group",
+    "website": "https://www.summitexecutivecoachinggroup.com/retreats",
+    "booking_link": "https://www.summitexecutivecoachinggroup.com/book/coastal-clarity",
+    "images": [
+      "https://picsum.photos/seed/coastal-clarity/800/600",
+      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=600&fit=crop"
+    ],
+    "category": "Leadership Retreats",
+    "featured": true
+  },
+  {
+    "id": "ret-003",
+    "title": "Hill Country Healing Weekend",
+    "slug": "hill-country-healing-weekend",
+    "description": "Escape to the Texas Hill Country for a restorative weekend of sound healing, somatic therapy workshops, and campfire connection circles. Perfect for those recovering from burnout or major life transitions.",
+    "location": "Hill Country Wellness Ranch",
+    "city": "Fredericksburg",
+    "state": "TX",
+    "date": "2026-08-22",
+    "duration": "3 days / 2 nights",
+    "price": "$1,895",
+    "organizer": "Renewal Burnout Recovery Program",
+    "website": "https://www.renewalburnoutrecoveryprogram.com/retreats",
+    "booking_link": "https://www.renewalburnoutrecoveryprogram.com/book/hill-country",
+    "images": [
+      "https://picsum.photos/seed/hill-country/800/600",
+      "https://images.unsplash.com/photo-1519823551278-64ac92734fb9?w=800&h=600&fit=crop"
+    ],
+    "category": "Wellness Retreats",
+    "featured": true
+  },
+  {
+    "id": "ret-004",
+    "title": "Everglades Awakening Growth Retreat",
+    "slug": "everglades-awakening-growth-retreat",
+    "description": "A transformative four-day growth retreat blending adventure therapy, group coaching, and wetland eco-excursions. Participants leave with a personal growth roadmap and a supportive alumni community.",
+    "location": "Everglades Eco-Lodge",
+    "city": "Everglades City",
+    "state": "FL",
+    "date": "2026-11-07",
+    "duration": "4 days / 3 nights",
+    "price": "$2,100",
+    "organizer": "New Horizons Life Coaching",
+    "website": "https://www.newhorizonslifecoaching.com/retreats",
+    "booking_link": "https://www.newhorizonslifecoaching.com/book/everglades",
+    "images": [
+      "https://picsum.photos/seed/everglades/800/600",
+      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
+    ],
+    "category": "Growth Retreats",
+    "featured": false
+  },
+  {
+    "id": "ret-005",
+    "title": "Catskill Mountains Mindfulness Immersion",
+    "slug": "catskill-mountains-mindfulness-immersion",
+    "description": "Seven days of silent meditation, mindful hiking, and dharma talks in the serene Catskill Mountains. Suitable for both beginners and experienced practitioners seeking depth in their practice.",
+    "location": "Catskill Mindfulness Center",
+    "city": "Phoenicia",
+    "state": "NY",
+    "date": "2026-07-18",
+    "duration": "7 days / 6 nights",
+    "price": "$1,650",
+    "organizer": "Mindful NYC Discussion Series",
+    "website": "https://www.mindfulnycdiscussionseries.com/retreats",
+    "booking_link": "https://www.mindfulnycdiscussionseries.com/book/catskills",
+    "images": [
+      "https://picsum.photos/seed/catskills/800/600",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop"
+    ],
+    "category": "Wellness Retreats",
+    "featured": true
+  },
+  {
+    "id": "ret-006",
+    "title": "Lake Michigan Leadership Reset",
+    "slug": "lake-michigan-leadership-reset",
+    "description": "A boutique leadership retreat for mid-career professionals on the shores of Lake Michigan. Includes 360-feedback debriefs, peer coaching circles, and sailing-based team exercises.",
+    "location": "North Shore Leadership Campus",
+    "city": "Lake Forest",
+    "state": "IL",
+    "date": "2026-09-26",
+    "duration": "4 days / 3 nights",
+    "price": "$3,200",
+    "organizer": "Chicago Leadership Academy",
+    "website": "https://www.chicagoleadershipacademy.com/retreats",
+    "booking_link": "https://www.chicagoleadershipacademy.com/book/lake-michigan",
+    "images": [
+      "https://picsum.photos/seed/lake-michigan/800/600",
+      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=600&fit=crop"
+    ],
+    "category": "Leadership Retreats",
+    "featured": true
+  },
+  {
+    "id": "ret-007",
+    "title": "Desert Dawn Women's Empowerment Retreat",
+    "slug": "desert-dawn-womens-empowerment-retreat",
+    "description": "A sacred gathering for women in the Arizona desert featuring journaling workshops, fire ceremonies, yoga, and sisterhood circles. Reconnect with your inner strength and authentic voice.",
+    "location": "Sonoran Desert Sanctuary",
+    "city": "Sedona",
+    "state": "AZ",
+    "date": "2026-10-17",
+    "duration": "4 days / 3 nights",
+    "price": "$2,350",
+    "organizer": "Women Rising Circle Austin",
+    "website": "https://www.womenrisingcircleaustin.com/retreats",
+    "booking_link": "https://www.womenrisingcircleaustin.com/book/desert-dawn",
+    "images": [
+      "https://picsum.photos/seed/desert-dawn/800/600",
+      "https://images.unsplash.com/photo-1518609878373-a06a9960a4b8?w=800&h=600&fit=crop"
+    ],
+    "category": "Growth Retreats",
+    "featured": false
+  },
+  {
+    "id": "ret-008",
+    "title": "Big Sur Breathwork & Breakthrough Retreat",
+    "slug": "big-sur-breathwork-breakthrough-retreat",
+    "description": "An intensive three-day retreat on the cliffs of Big Sur combining holotropic breathwork, integration coaching, and ocean-view meditation. For those ready to release old patterns and step into new possibilities.",
+    "location": "Big Sur Coastal Retreat House",
+    "city": "Big Sur",
+    "state": "CA",
+    "date": "2026-08-08",
+    "duration": "3 days / 2 nights",
+    "organizer": "Golden Gate Wellness Center",
+    "website": "https://www.goldengatewellnesscenter.com/retreats",
+    "booking_link": "https://www.goldengatewellnesscenter.com/book/big-sur",
+    "images": [
+      "https://picsum.photos/seed/big-sur/800/600",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
+    ],
+    "category": "Growth Retreats",
+    "featured": true
+  },
+  {
+    "id": "ret-009",
+    "title": "Gulf Coast Rest & Restore Retreat",
+    "slug": "gulf-coast-rest-restore-retreat",
+    "description": "Unplug on Florida's Gulf Coast with daily beach yoga, therapeutic massage, nutrition workshops, and sunset gratitude circles. A gentle entry point for first-time retreat-goers.",
+    "location": "Gulf Coast Wellness Inn",
+    "city": "Naples",
+    "state": "FL",
+    "date": "2026-07-25",
+    "duration": "3 days / 2 nights",
+    "price": "$1,750",
+    "organizer": "Palm Beach Wellness Retreat Center",
+    "website": "https://www.palmbeachwellnessretreatcenter.com/retreats",
+    "booking_link": "https://www.palmbeachwellnessretreatcenter.com/book/gulf-coast",
+    "images": [
+      "https://picsum.photos/seed/gulf-coast/800/600",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop"
+    ],
+    "category": "Wellness Retreats",
+    "featured": false
+  },
+  {
+    "id": "ret-010",
+    "title": "Adirondack Men's Rites of Passage Retreat",
+    "slug": "adirondack-mens-rites-of-passage-retreat",
+    "description": "A powerful four-day men's retreat in the Adirondack wilderness featuring sweat lodge ceremonies, vision quests, and facilitated brotherhood circles. For men navigating major life transitions.",
+    "location": "Adirondack Wilderness Lodge",
+    "city": "Lake Placid",
+    "state": "NY",
+    "date": "2026-09-05",
+    "duration": "4 days / 3 nights",
+    "price": "$2,200",
+    "organizer": "Brotherhood Men's Circle SF",
+    "website": "https://www.brotherhoodmenscirclesf.com/retreats",
+    "booking_link": "https://www.brotherhoodmenscirclesf.com/book/adirondack",
+    "images": [
+      "https://picsum.photos/seed/adirondack-men/800/600",
+      "https://images.unsplash.com/photo-1478131143081-5f2f667546f0?w=800&h=600&fit=crop"
+    ],
+    "category": "Growth Retreats",
+    "featured": false
+  },
+  {
+    "id": "ret-011",
+    "title": "Austin Creative Burnout Recovery Retreat",
+    "slug": "austin-creative-burnout-recovery-retreat",
+    "description": "Designed for creatives and tech professionals, this Austin-area retreat combines art therapy, nature walks, sleep science workshops, and peer coaching to rebuild sustainable creative energy.",
+    "location": "Barton Creek Ranch Retreat",
+    "city": "Austin",
+    "state": "TX",
+    "date": "2026-08-15",
+    "duration": "2 days / 1 night",
+    "price": "$895",
+    "organizer": "Florida Burnout Recovery Collective",
+    "website": "https://www.floridaburnoutrecoverycollective.com/retreats",
+    "booking_link": "https://www.floridaburnoutrecoverycollective.com/book/austin-creative",
+    "images": [
+      "https://picsum.photos/seed/austin-creative/800/600",
+      "https://images.unsplash.com/photo-1517457373958-b7101a0729b2?w=800&h=600&fit=crop"
+    ],
+    "category": "Wellness Retreats",
+    "featured": false
+  },
+  {
+    "id": "ret-012",
+    "title": "Hudson Valley Couples Renewal Retreat",
+    "slug": "hudson-valley-couples-renewal-retreat",
+    "description": "Reignite connection with your partner at this intimate couples retreat featuring Gottman-method workshops, private coaching sessions, farm dinners, and couples yoga in a historic Hudson Valley estate.",
+    "location": "Hudson Valley Estate & Spa",
+    "city": "Rhinebeck",
+    "state": "NY",
+    "date": "2026-10-24",
+    "duration": "3 days / 2 nights",
+    "price": "$3,500 per couple",
+    "organizer": "Heartspace Relationship Institute",
+    "website": "https://www.heartspacerelationshipinstitute.com/retreats",
+    "booking_link": "https://www.heartspacerelationshipinstitute.com/book/hudson-valley",
+    "images": [
+      "https://picsum.photos/seed/hudson-couples/800/600",
+      "https://images.unsplash.com/photo-1522673607200-3144ad9c6b9b?w=800&h=600&fit=crop"
+    ],
+    "category": "Wellness Retreats",
+    "featured": true
+  },
+  {
+    "id": "ret-013",
+    "title": "Chicago Executive Presence Retreat",
+    "slug": "chicago-executive-presence-retreat",
+    "description": "Sharpen your executive presence at this downtown Chicago retreat with media training, storytelling workshops, and one-on-one coaching. Ideal for leaders preparing for board roles or public-facing positions.",
+    "location": "Magnificent Mile Executive Center",
+    "city": "Chicago",
+    "state": "IL",
+    "date": "2026-11-14",
+    "duration": "2 days / 1 night",
+    "price": "$4,500",
+    "organizer": "Empire State Executive Coaching",
+    "website": "https://www.empirestateexecutivecoaching.com/retreats",
+    "booking_link": "https://www.empirestateexecutivecoaching.com/book/chicago-exec",
+    "images": [
+      "https://picsum.photos/seed/chicago-exec/800/600",
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop"
+    ],
+    "category": "Leadership Retreats",
+    "featured": true
+  }
+]

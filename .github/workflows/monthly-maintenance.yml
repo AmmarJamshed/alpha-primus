@@ -1,0 +1,30 @@
+name: Monthly Maintenance
+
+on:
+  schedule:
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+
+jobs:
+  validate-providers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Validate provider websites
+        run: npx tsx scripts/discovery/validate-websites.ts
+
+      - name: Generate maintenance report
+        run: npx tsx scripts/discovery/generate-report.ts
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: maintenance-report
+          path: scripts/discovery/output/report.json

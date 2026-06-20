@@ -1,0 +1,164 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum UserRole {
+  visitor
+  user
+  provider
+  admin
+}
+
+model User {
+  id         String   @id @default(cuid())
+  email      String   @unique
+  name       String?
+  role       UserRole @default(user)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  reviews    Review[]
+  saved      SavedItem[]
+}
+
+model Category {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  slug        String     @unique
+  description String
+  icon        String?
+  featured    Boolean    @default(false)
+  providers   Provider[]
+}
+
+model Provider {
+  id               String    @id @default(cuid())
+  name             String
+  slug             String    @unique
+  description      String
+  category_id      String
+  category         Category  @relation(fields: [category_id], references: [id])
+  subcategory      String?
+  website          String?
+  phone            String?
+  email            String?
+  address          String?
+  city             String
+  state            String
+  zipcode          String?
+  country          String    @default("United States")
+  latitude         Float?
+  longitude        Float?
+  virtual_services Boolean   @default(false)
+  social_links     Json?
+  images           String[]
+  verified         Boolean   @default(false)
+  claimed          Boolean   @default(false)
+  featured         Boolean   @default(false)
+  specialties      String[]
+  rating           Float     @default(0)
+  review_count     Int       @default(0)
+  search_vector    Unsupported("tsvector")?
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+  reviews          Review[]
+  claims           ProviderClaim[]
+
+  @@index([state, city])
+  @@index([category_id])
+  @@index([featured])
+  @@index([slug])
+}
+
+model Retreat {
+  id           String   @id @default(cuid())
+  title        String
+  slug         String   @unique
+  description  String
+  location     String
+  city         String
+  state        String
+  date         String
+  duration     String
+  price        String?
+  organizer    String
+  website      String?
+  booking_link String?
+  images       String[]
+  category     String
+  featured     Boolean  @default(false)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+}
+
+model Event {
+  id               String   @id @default(cuid())
+  title            String
+  slug             String   @unique
+  description      String
+  date             String
+  time             String
+  location         String
+  city             String
+  state            String
+  organizer        String
+  registration_url String?
+  images           String[]
+  category         String
+  featured         Boolean  @default(false)
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  provider_id String
+  provider    Provider @relation(fields: [provider_id], references: [id])
+  user_id     String?
+  user        User?    @relation(fields: [user_id], references: [id])
+  user_name   String
+  rating      Int
+  content     String
+  approved    Boolean  @default(false)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@index([provider_id])
+  @@index([approved])
+}
+
+model SavedItem {
+  id         String   @id @default(cuid())
+  user_id    String
+  user       User     @relation(fields: [user_id], references: [id])
+  item_type  String
+  item_id    String
+  created_at DateTime @default(now())
+
+  @@unique([user_id, item_type, item_id])
+}
+
+model ProviderClaim {
+  id          String   @id @default(cuid())
+  provider_id String
+  provider    Provider @relation(fields: [provider_id], references: [id])
+  user_id     String
+  status      String   @default("pending")
+  method      String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model ImportLog {
+  id          String   @id @default(cuid())
+  source      String
+  records     Int
+  status      String
+  errors      Json?
+  created_at  DateTime @default(now())
+}

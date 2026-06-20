@@ -1,0 +1,58 @@
+[
+  {
+    "id": "test-001",
+    "name": "Sarah Mitchell",
+    "role": "Marketing Director, Austin TX",
+    "quote": "Alpha Primus helped me find a therapist who truly understood my anxiety during a difficult career transition. Within weeks, I felt hopeful again for the first time in months.",
+    "avatar": "https://picsum.photos/seed/sarah-mitchell/200/200"
+  },
+  {
+    "id": "test-002",
+    "name": "James Chen",
+    "role": "Software Engineer, San Francisco CA",
+    "quote": "I was skeptical about coaching, but finding an executive coach through Alpha Primus changed how I lead my team. The directory made it easy to compare specialties and read real reviews.",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "test-003",
+    "name": "Maria Rodriguez",
+    "role": "Registered Nurse, Miami FL",
+    "quote": "After two years of burnout, I found a recovery program and support group on Alpha Primus that saved my career—and my sanity. I finally feel like I'm not alone in this.",
+    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "test-004",
+    "name": "David Thompson",
+    "role": "Small Business Owner, Chicago IL",
+    "quote": "The men's group I discovered here gave me a space to be honest about stress and fatherhood. Alpha Primus made it simple to find something local that fit my schedule.",
+    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "test-005",
+    "name": "Emily Nakamura",
+    "role": "Graduate Student, New York NY",
+    "quote": "Finding affordable therapy as a student felt impossible until I used Alpha Primus filters. I connected with a therapist offering sliding scale sessions within days.",
+    "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "test-006",
+    "name": "Robert & Linda Hayes",
+    "role": "Retired Couple, Tampa FL",
+    "quote": "We attended a couples workshop we found on Alpha Primus and it reignited our communication after 30 years of marriage. The platform feels warm and trustworthy, not clinical.",
+    "avatar": "https://picsum.photos/seed/hayes-couple/200/200"
+  },
+  {
+    "id": "test-007",
+    "name": "Aisha Patel",
+    "role": "HR Director, Dallas TX",
+    "quote": "Our company used Alpha Primus to build a wellness resource page for employees. The breadth of providers—from burnout programs to mindfulness—made it a one-stop discovery tool.",
+    "avatar": "https://images.unsplash.com/photo-1573497019940-88416028119b?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "test-008",
+    "name": "Michael O'Brien",
+    "role": "Veteran & Advocate, Brooklyn NY",
+    "quote": "As a veteran navigating PTSD, finding a trauma-informed therapist through Alpha Primus felt safe and straightforward. The verified badges and detailed profiles built real trust.",
+    "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
+  }
+]

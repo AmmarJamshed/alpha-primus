@@ -1,0 +1,325 @@
+[
+  {
+    "id": "evt-001",
+    "title": "Anxiety Toolkit Workshop: Practical Strategies for Daily Calm",
+    "slug": "anxiety-toolkit-workshop-daily-calm",
+    "description": "Learn evidence-based techniques for managing anxiety including grounding exercises, cognitive reframing, and breathwork. Led by licensed therapists with time for Q&A.",
+    "date": "2026-07-08",
+    "time": "6:00 PM - 8:00 PM",
+    "location": "Pacific Mind Therapy Collective, San Francisco",
+    "city": "San Francisco",
+    "state": "CA",
+    "organizer": "Pacific Mind Therapy Collective",
+    "registration_url": "https://www.pacificmindtherapycollective.com/events/anxiety-toolkit",
+    "images": [
+      "https://picsum.photos/seed/anxiety-toolkit/800/600",
+      "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&h=600&fit=crop"
+    ],
+    "category": "Community Events",
+    "featured": true
+  },
+  {
+    "id": "evt-002",
+    "title": "Intro to Mindfulness: Free Community Meditation",
+    "slug": "intro-mindfulness-free-meditation",
+    "description": "A welcoming introduction to mindfulness meditation for complete beginners. No experience required. Cushions and chairs provided.",
+    "date": "2026-07-12",
+    "time": "10:00 AM - 11:30 AM",
+    "location": "Coastal Calm Mindfulness Center, Tampa",
+    "city": "Tampa",
+    "state": "FL",
+    "organizer": "Coastal Calm Mindfulness Center",
+    "registration_url": "https://www.coastalcalmmindfulnesscenter.com/events/intro-mindfulness",
+    "images": [
+      "https://picsum.photos/seed/intro-mindfulness/800/600",
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=600&fit=crop"
+    ],
+    "category": "Mindfulness Programs",
+    "featured": true
+  },
+  {
+    "id": "evt-003",
+    "title": "Career Pivot Panel: Stories from Successful Transitions",
+    "slug": "career-pivot-panel-successful-transitions",
+    "description": "Hear from four professionals who successfully changed careers in their 30s and 40s. Panel followed by networking and mini coaching sessions.",
+    "date": "2026-07-15",
+    "time": "6:30 PM - 9:00 PM",
+    "location": "Texas Career Catalyst Coaching, Dallas",
+    "city": "Dallas",
+    "state": "TX",
+    "organizer": "Texas Career Catalyst Coaching",
+    "registration_url": "https://www.texascareercatalystcoaching.com/events/career-pivot",
+    "images": [
+      "https://picsum.photos/seed/career-pivot/800/600",
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop"
+    ],
+    "category": "Career Coaches",
+    "featured": false
+  },
+  {
+    "id": "evt-004",
+    "title": "Men's Open Circle: Finding Purpose After 40",
+    "slug": "mens-open-circle-purpose-after-40",
+    "description": "An open men's discussion circle exploring purpose, legacy, and reinvention in midlife. New members welcome; confidentiality honored.",
+    "date": "2026-07-10",
+    "time": "7:00 PM - 9:00 PM",
+    "location": "Brotherhood Men's Circle SF, San Francisco",
+    "city": "San Francisco",
+    "state": "CA",
+    "organizer": "Brotherhood Men's Circle SF",
+    "registration_url": "https://www.brotherhoodmenscirclesf.com/events/open-circle-july",
+    "images": [
+      "https://picsum.photos/seed/mens-circle-40/800/600",
+      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=600&fit=crop"
+    ],
+    "category": "Men's Groups",
+    "featured": false
+  },
+  {
+    "id": "evt-005",
+    "title": "Burnout Recovery Masterclass for Healthcare Workers",
+    "slug": "burnout-recovery-masterclass-healthcare",
+    "description": "A free masterclass for nurses, physicians, and healthcare staff experiencing compassion fatigue. Covers boundary setting, peer support resources, and recovery planning.",
+    "date": "2026-07-20",
+    "time": "12:00 PM - 1:30 PM",
+    "location": "Virtual (Zoom)",
+    "city": "Miami",
+    "state": "FL",
+    "organizer": "Florida Burnout Recovery Collective",
+    "registration_url": "https://www.floridaburnoutrecoverycollective.com/events/healthcare-masterclass",
+    "images": [
+      "https://picsum.photos/seed/healthcare-burnout/800/600",
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop"
+    ],
+    "category": "Burnout Recovery Programs",
+    "featured": true
+  },
+  {
+    "id": "evt-006",
+    "title": "Couples Communication Skills Workshop",
+    "slug": "couples-communication-skills-workshop",
+    "description": "A half-day workshop teaching the Gottman Method's core communication tools. Couples will practice active listening, repair attempts, and conflict de-escalation.",
+    "date": "2026-07-26",
+    "time": "9:00 AM - 1:00 PM",
+    "location": "Heartspace Relationship Institute, Santa Monica",
+    "city": "Santa Monica",
+    "state": "CA",
+    "organizer": "Heartspace Relationship Institute",
+    "registration_url": "https://www.heartspacerelationshipinstitute.com/events/couples-communication",
+    "images": [
+      "https://picsum.photos/seed/couples-workshop/800/600",
+      "https://images.unsplash.com/photo-1516589177181-d734ae30a658?w=800&h=600&fit=crop"
+    ],
+    "category": "Relationship Coaches",
+    "featured": true
+  },
+  {
+    "id": "evt-007",
+    "title": "Women in Leadership Breakfast Series",
+    "slug": "women-in-leadership-breakfast-series",
+    "description": "Monthly breakfast gathering for women leaders featuring guest speakers, peer mentoring, and strategic networking. July topic: Negotiating with Confidence.",
+    "date": "2026-07-17",
+    "time": "8:00 AM - 10:00 AM",
+    "location": "She Leads Women's Leadership Circle, New York",
+    "city": "New York",
+    "state": "NY",
+    "organizer": "She Leads Women's Leadership Circle",
+    "registration_url": "https://www.sheleadswomensleadershipcircle.com/events/july-breakfast",
+    "images": [
+      "https://picsum.photos/seed/women-leadership/800/600",
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop"
+    ],
+    "category": "Women's Groups",
+    "featured": true
+  },
+  {
+    "id": "evt-008",
+    "title": "Grief Support Group Open House",
+    "slug": "grief-support-group-open-house",
+    "description": "Meet facilitators, learn about our grief support programs, and connect with others who understand loss. Light refreshments provided; no commitment required.",
+    "date": "2026-07-22",
+    "time": "5:30 PM - 7:00 PM",
+    "location": "Bay Area Grief Support Circle, Berkeley",
+    "city": "Berkeley",
+    "state": "CA",
+    "organizer": "Bay Area Grief Support Circle",
+    "registration_url": "https://www.bayareagriefsupportcircle.com/events/open-house",
+    "images": [
+      "https://picsum.photos/seed/grief-open-house/800/600",
+      "https://images.unsplash.com/photo-1517457373958-b7101a0729b2?w=800&h=600&fit=crop"
+    ],
+    "category": "Support Groups",
+    "featured": false
+  },
+  {
+    "id": "evt-009",
+    "title": "Authentic Leadership Cohort Info Session",
+    "slug": "authentic-leadership-cohort-info-session",
+    "description": "Learn about our 12-week authentic leadership program starting in September. Meet alumni, review curriculum, and ask questions about enrollment.",
+    "date": "2026-07-29",
+    "time": "6:00 PM - 7:30 PM",
+    "location": "Authentic Leadership Institute Texas, San Antonio",
+    "city": "San Antonio",
+    "state": "TX",
+    "organizer": "Authentic Leadership Institute Texas",
+    "registration_url": "https://www.authenticleadershipinstitutetexas.com/events/info-session",
+    "images": [
+      "https://picsum.photos/seed/leadership-info/800/600",
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop"
+    ],
+    "category": "Leadership Programs",
+    "featured": false
+  },
+  {
+    "id": "evt-010",
+    "title": "Chicago Mental Health Awareness Fair",
+    "slug": "chicago-mental-health-awareness-fair",
+    "description": "A community fair connecting Chicago residents with local therapists, support groups, and wellness resources. Free screenings, workshops, and family activities.",
+    "date": "2026-08-02",
+    "time": "11:00 AM - 4:00 PM",
+    "location": "Millennium Park, Chicago",
+    "city": "Chicago",
+    "state": "IL",
+    "organizer": "Windy City Therapy Associates",
+    "registration_url": "https://www.windycitytherapyassociates.com/events/mh-awareness-fair",
+    "images": [
+      "https://picsum.photos/seed/chicago-mh-fair/800/600",
+      "https://images.unsplash.com/photo-1494526585095-c45846287556?w=800&h=600&fit=crop"
+    ],
+    "category": "Community Events",
+    "featured": true
+  },
+  {
+    "id": "evt-011",
+    "title": "MBSR Orientation: 8-Week Program Preview",
+    "slug": "mbsr-orientation-8-week-preview",
+    "description": "Free orientation for our upcoming Mindfulness-Based Stress Reduction course. Experience a guided meditation and learn what the 8-week commitment involves.",
+    "date": "2026-08-05",
+    "time": "6:30 PM - 8:00 PM",
+    "location": "Mindful Path MBSR Program, Sacramento",
+    "city": "Sacramento",
+    "state": "CA",
+    "organizer": "Mindful Path MBSR Program",
+    "registration_url": "https://www.mindfulpathmbsrprogram.com/events/mbsr-orientation",
+    "images": [
+      "https://picsum.photos/seed/mbsr-orientation/800/600",
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=600&fit=crop"
+    ],
+    "category": "Mindfulness Programs",
+    "featured": false
+  },
+  {
+    "id": "evt-012",
+    "title": "Brooklyn Anxiety & Depression Peer Meetup",
+    "slug": "brooklyn-anxiety-depression-peer-meetup",
+    "description": "A peer-facilitated meetup for adults managing anxiety and depression. Share experiences, coping strategies, and encouragement in a judgment-free space.",
+    "date": "2026-08-09",
+    "time": "7:00 PM - 8:30 PM",
+    "location": "Brooklyn Bridge Support Community, Brooklyn",
+    "city": "Brooklyn",
+    "state": "NY",
+    "organizer": "Brooklyn Bridge Support Community",
+    "registration_url": "https://www.brooklynbridgesupportcommunity.com/events/august-meetup",
+    "images": [
+      "https://picsum.photos/seed/brooklyn-meetup/800/600",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop"
+    ],
+    "category": "Support Groups",
+    "featured": false
+  },
+  {
+    "id": "evt-013",
+    "title": "Executive Coaching Demo Day",
+    "slug": "executive-coaching-demo-day",
+    "description": "Experience a sample executive coaching session and learn how coaching differs from consulting and therapy. Open to senior leaders considering coaching investment.",
+    "date": "2026-08-12",
+    "time": "4:00 PM - 6:00 PM",
+    "location": "Empire State Executive Coaching, New York",
+    "city": "New York",
+    "state": "NY",
+    "organizer": "Empire State Executive Coaching",
+    "registration_url": "https://www.empirestateexecutivecoaching.com/events/demo-day",
+    "images": [
+      "https://picsum.photos/seed/exec-demo-day/800/600",
+      "https://images.unsplash.com/photo-1556761175-b413da4cc9af?w=800&h=600&fit=crop"
+    ],
+    "category": "Executive Coaches",
+    "featured": true
+  },
+  {
+    "id": "evt-014",
+    "title": "Personal Breakthrough Weekend Preview Webinar",
+    "slug": "personal-breakthrough-weekend-preview",
+    "description": "A free virtual preview of our signature Personal Breakthrough Weekend workshop. Learn the framework, meet facilitators, and hear graduate testimonials.",
+    "date": "2026-08-16",
+    "time": "1:00 PM - 2:30 PM",
+    "location": "Virtual (Zoom)",
+    "city": "White Plains",
+    "state": "NY",
+    "organizer": "Hudson Valley Personal Growth Institute",
+    "registration_url": "https://www.hudsonvalleypersonalgrowthinstitute.com/events/breakthrough-preview",
+    "images": [
+      "https://picsum.photos/seed/breakthrough-preview/800/600",
+      "https://images.unsplash.com/photo-1524178232363-18f210f1a963?w=800&h=600&fit=crop"
+    ],
+    "category": "Personal Development Programs",
+    "featured": false
+  },
+  {
+    "id": "evt-015",
+    "title": "Deep Roots Philosophy Circle: Stoicism in Modern Life",
+    "slug": "deep-roots-stoicism-modern-life",
+    "description": "Join our monthly philosophy discussion exploring how Stoic principles apply to modern challenges like social media anxiety, career uncertainty, and political stress.",
+    "date": "2026-08-20",
+    "time": "7:00 PM - 9:00 PM",
+    "location": "Deep Roots Discussion Circle, Plano",
+    "city": "Plano",
+    "state": "TX",
+    "organizer": "Deep Roots Discussion Circle",
+    "registration_url": "https://www.deeprootsdiscussioncircle.com/events/stoicism-july",
+    "images": [
+      "https://picsum.photos/seed/stoicism-circle/800/600",
+      "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=600&fit=crop"
+    ],
+    "category": "Discussion Circles",
+    "featured": false
+  },
+  {
+    "id": "evt-016",
+    "title": "Holistic Wellness Open Day",
+    "slug": "holistic-wellness-open-day",
+    "description": "Tour our wellness center, sample mini sessions of yoga, acupuncture, and nutrition consulting. Special enrollment discounts for new members.",
+    "date": "2026-08-23",
+    "time": "10:00 AM - 3:00 PM",
+    "location": "Golden Gate Wellness Center, Los Angeles",
+    "city": "Los Angeles",
+    "state": "CA",
+    "organizer": "Golden Gate Wellness Center",
+    "registration_url": "https://www.goldengatewellnesscenter.com/events/open-day",
+    "images": [
+      "https://picsum.photos/seed/wellness-open-day/800/600",
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=600&fit=crop"
+    ],
+    "category": "Wellness Centers",
+    "featured": true
+  },
+  {
+    "id": "evt-017",
+    "title": "Chronic Illness Support Group Monthly Meeting",
+    "slug": "chronic-illness-support-group-monthly",
+    "description": "Our monthly meeting for individuals living with chronic illness and their caregivers. Topic this month: Communicating Needs to Family and Friends.",
+    "date": "2026-08-27",
+    "time": "6:00 PM - 7:30 PM",
+    "location": "Second City Support Groups, Evanston",
+    "city": "Evanston",
+    "state": "IL",
+    "organizer": "Second City Support Groups",
+    "registration_url": "https://www.secondcitysupportgroups.com/events/chronic-illness-august",
+    "images": [
+      "https://picsum.photos/seed/chronic-illness/800/600",
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop"
+    ],
+    "category": "Support Groups",
+    "featured": false
+  }
+]
