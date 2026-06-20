@@ -44,6 +44,9 @@ export interface Provider {
   review_count: number;
   created_at: string;
   updated_at: string;
+  npi_number?: string;
+  source?: string;
+  source_url?: string;
 }
 
 export interface Retreat {

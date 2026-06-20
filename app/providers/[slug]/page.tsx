@@ -80,13 +80,21 @@ export default async function ProviderPage({ params }: ProviderPageProps) {
             </h1>
 
             <div className="mt-3 flex items-center gap-3 text-sm">
-              <span className="flex items-center gap-1 font-medium">
-                <Star className="h-4 w-4 fill-[#D4AF37] text-[#D4AF37]" />
-                {provider.rating.toFixed(1)}
-              </span>
-              <span className="text-muted-foreground">
-                ({provider.review_count} reviews)
-              </span>
+              {provider.rating > 0 ? (
+                <>
+                  <span className="flex items-center gap-1 font-medium">
+                    <Star className="h-4 w-4 fill-[#D4AF37] text-[#D4AF37]" />
+                    {provider.rating.toFixed(1)}
+                  </span>
+                  <span className="text-muted-foreground">
+                    ({provider.review_count} reviews)
+                  </span>
+                </>
+              ) : (
+                <span className="rounded-full bg-[#A8C5A0]/30 px-3 py-0.5 text-xs font-medium text-[#0B1F3A]">
+                  NPI Registry Verified
+                </span>
+              )}
               <span className="text-muted-foreground">·</span>
               <span className="flex items-center gap-1 text-muted-foreground">
                 <MapPin className="h-4 w-4" />
@@ -199,7 +207,7 @@ export default async function ProviderPage({ params }: ProviderPageProps) {
                     <Mail className="h-4 w-4" /> {provider.email}
                   </a>
                 )}
-                {provider.website && (
+                {provider.website ? (
                   <a
                     href={provider.website}
                     target="_blank"
@@ -209,7 +217,18 @@ export default async function ProviderPage({ params }: ProviderPageProps) {
                     <Globe className="h-4 w-4" /> Visit Website
                     <ExternalLink className="h-3 w-3" />
                   </a>
-                )}
+                ) : null}
+                {"source_url" in provider && provider.source_url ? (
+                  <a
+                    href={provider.source_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-muted-foreground hover:text-[#0B1F3A]"
+                  >
+                    <Globe className="h-4 w-4" /> Verify on NPI Registry
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                ) : null}
                 <p className="flex items-start gap-2 text-muted-foreground">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
                   {provider.address}, {provider.city}, {provider.state}{" "}

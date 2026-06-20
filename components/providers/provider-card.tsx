@@ -38,8 +38,14 @@ export function ProviderCard({ provider }: ProviderCardProps) {
               </h3>
             </div>
             <div className="flex shrink-0 items-center gap-1 text-sm">
-              <Star className="h-4 w-4 fill-[#D4AF37] text-[#D4AF37]" />
-              <span className="font-medium">{provider.rating.toFixed(1)}</span>
+              {provider.rating > 0 ? (
+                <>
+                  <Star className="h-4 w-4 fill-[#D4AF37] text-[#D4AF37]" />
+                  <span className="font-medium">{provider.rating.toFixed(1)}</span>
+                </>
+              ) : (
+                <span className="text-muted-foreground">NPI Verified</span>
+              )}
             </div>
           </div>
           <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
