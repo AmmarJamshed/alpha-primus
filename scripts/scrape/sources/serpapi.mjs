@@ -31,10 +31,8 @@ export const CATEGORY_SEARCHES = [
   { q: "mindfulness meditation center", category: "Mindfulness Programs", subcategory: "MBSR & Meditation" },
   { q: "wellness center", category: "Wellness Centers", subcategory: "Holistic Wellness" },
   { q: "personal development workshop", category: "Personal Development Programs", subcategory: "Self-Improvement" },
-  { q: "wellness retreat", category: "Wellness Retreats", subcategory: "Healing & Rejuvenation" },
-  { q: "leadership retreat", category: "Leadership Retreats", subcategory: "Leadership Intensive" },
-  { q: "personal growth retreat", category: "Growth Retreats", subcategory: "Transformation" },
   { q: "wellness workshop community event", category: "Community Events", subcategory: "Local Gatherings" },
+  // Retreat categories (Wellness/Leadership/Growth Retreats) sync via data/retreats.json on alternate bi-weekly run.
 ];
 
 function getApiKey() {
@@ -200,7 +198,7 @@ export async function scrapeSerpApi() {
   console.log(`  SerpAPI total: ${providers.size} providers, ${apiCalls} API calls`);
   console.log(`  SerpAPI by state:`, byState);
 
-  return [...providers.values()];
+  return { providers: [...providers.values()], apiCalls };
 }
 
 export { CATEGORY_SEARCHES as SEARCHES };

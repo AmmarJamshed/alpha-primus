@@ -11,7 +11,7 @@ import {
   searchAllStates,
 } from "../lib/serpapi-shared.mjs";
 
-const EVENT_SEARCHES = [
+export const EVENT_SEARCHES = [
   { q: "wellness workshop", category: "Community Events", label: "Wellness Workshops" },
   { q: "support group meeting", category: "Support Groups", label: "Support Meetups" },
   { q: "meditation class", category: "Mindfulness Programs", label: "Meditation Classes" },
@@ -88,5 +88,5 @@ export async function scrapeEvents() {
   });
 
   console.log(`  Events total: ${list.length} (${apiCalls} API calls)`);
-  return list;
+  return { events: list, apiCalls };
 }

@@ -51,17 +51,23 @@ cp .env.example .env.local
 
 Automated bi-weekly sync via GitHub Actions (`.github/workflows/bi-weekly-provider-sync.yml`):
 
+| Schedule | Sync mode | SerpAPI calls |
+|----------|-----------|---------------|
+| **1st of month** | Providers (NPI + 15 Google Maps categories × 5 states) | 75 |
+| **15th of month** | Retreats & events (10 queries × 5 states) | 50 |
+
+**Monthly SerpAPI total: 125 / 180** (55 headroom for manual runs). Each run is hard-capped at 90 calls.
+
 | Source | Data |
 |--------|------|
 | **CMS NPI Registry** | Licensed therapists, psychologists, counselors, social workers |
-| **SerpAPI Google Maps** | Life coaches, executive coaches, wellness centers, support groups, retreats |
+| **SerpAPI Google Maps** | Coaches, clinics, wellness centers, support groups, retreats, workshops |
 
 Set `SERPAPI_KEY` in GitHub repo secrets and locally in `.env.local` for sync runs.
 
-Each sync uses **90 SerpAPI calls** (18 categories × 5 states, one search each) plus free NPI Registry calls — ~180/month on bi-weekly schedule.
-
 ```bash
-npm run sync:providers
+npm run sync:providers          # providers mode (default)
+npm run sync:retreats-events    # retreats + events only
 ```
 
 Manual CSV/JSON import:

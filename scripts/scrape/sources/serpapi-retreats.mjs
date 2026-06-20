@@ -11,7 +11,7 @@ import {
   searchAllStates,
 } from "../lib/serpapi-shared.mjs";
 
-const RETREAT_SEARCHES = [
+export const RETREAT_SEARCHES = [
   { q: "wellness retreat", category: "Wellness Retreats", label: "Wellness Retreats" },
   { q: "yoga retreat center", category: "Wellness Retreats", label: "Yoga Retreats" },
   { q: "leadership retreat", category: "Leadership Retreats", label: "Leadership Retreats" },
@@ -90,5 +90,5 @@ export async function scrapeRetreats() {
   });
 
   console.log(`  Retreats total: ${list.length} (${apiCalls} API calls)`);
-  return list;
+  return { retreats: list, apiCalls };
 }

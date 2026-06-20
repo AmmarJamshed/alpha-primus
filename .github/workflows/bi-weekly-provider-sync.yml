@@ -1,4 +1,10 @@
-name: Bi-Weekly Provider Sync
+name: Bi-Weekly Listing Sync
+
+# SerpAPI budget: 180 searches/month on free tier.
+# Split across 2 runs (~every two weeks):
+#   1st  → providers (75 SerpAPI calls: 15 categories × 5 states) + NPI (free)
+#   15th → retreats & events (50 SerpAPI calls: 10 queries × 5 states)
+# Monthly total: 125 SerpAPI calls (55 headroom for manual runs)
 
 on:
   schedule:
@@ -6,8 +12,16 @@ on:
     - cron: "0 6 1,15 * *"
   workflow_dispatch:
     inputs:
+      sync_mode:
+        description: "What to sync (respects 90 SerpAPI calls/run limit)"
+        required: true
+        default: "providers"
+        type: choice
+        options:
+          - providers
+          - retreats-events
       npi_per_state:
-        description: "NPI providers per launch state"
+        description: "NPI providers per launch state (providers mode only)"
         required: false
         default: "100"
 
@@ -15,7 +29,7 @@ permissions:
   contents: write
 
 jobs:
-  sync-providers:
+  sync-listings:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,32 +42,56 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Sync listings (providers, retreats, events)
+      - name: Determine sync mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "value=${{ github.event.inputs.sync_mode }}" >> "$GITHUB_OUTPUT"
+          elif [ "$(date -u +%d)" = "01" ]; then
+            echo "value=providers" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=retreats-events" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Sync listings
         env:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: |
           node scripts/sync-providers.mjs \
+            --sync-mode=${{ steps.mode.outputs.value }} \
+            --max-serpapi-calls=90 \
             --npi-per-state=${{ github.event.inputs.npi_per_state || '100' }}
 
       - name: Upload sync report
         uses: actions/upload-artifact@v4
         with:
-          name: provider-sync-report
+          name: listing-sync-report-${{ steps.mode.outputs.value }}
           path: scripts/discovery/output/sync-report.json
 
-      - name: Commit and push updated provider data
+      - name: Commit and push updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/providers.json data/retreats.json data/events.json scripts/discovery/output/sync-report.json
+
+          MODE="${{ steps.mode.outputs.value }}"
+          git add scripts/discovery/output/sync-report.json
+
+          if [ "$MODE" = "providers" ]; then
+            git add data/providers.json
+          else
+            git add data/retreats.json data/events.json
+          fi
+
           if git diff --staged --quiet; then
             echo "No listing changes detected."
             exit 0
           fi
-          git commit -m "$(cat <<'EOF'
-chore: bi-weekly sync from NPI and SerpAPI
 
-Automated refresh updates providers, retreats, and events from Google Maps; removes stale listings not seen in 28 days.
-EOF
-)"
+          if [ "$MODE" = "providers" ]; then
+            MSG="chore: bi-weekly provider sync (NPI + SerpAPI)"
+          else
+            MSG="chore: bi-weekly retreats & events sync (SerpAPI)"
+          fi
+
+          git commit -m "$MSG" -m "Automated refresh; SerpAPI budget capped at 90 calls/run (180/month)."
           git push
