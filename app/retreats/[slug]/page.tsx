@@ -75,7 +75,15 @@ export default async function RetreatPage({ params }: RetreatPageProps) {
         {retreat.booking_link && (
           <Button asChild className="rounded-full bg-[#0B1F3A]">
             <a href={retreat.booking_link} target="_blank" rel="noopener noreferrer">
-              Book Now <ExternalLink className="ml-2 h-4 w-4" />
+              {retreat.website ? "Book / Contact" : "View on Google Maps"}{" "}
+              <ExternalLink className="ml-2 h-4 w-4" />
+            </a>
+          </Button>
+        )}
+        {retreat.source_url && (
+          <Button asChild variant="outline" className="rounded-full">
+            <a href={retreat.source_url} target="_blank" rel="noopener noreferrer">
+              Google Maps
             </a>
           </Button>
         )}

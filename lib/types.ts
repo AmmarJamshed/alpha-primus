@@ -68,6 +68,13 @@ export interface Retreat {
   images: string[];
   category: string;
   featured: boolean;
+  source?: string;
+  source_id?: string;
+  source_url?: string;
+  phone?: string;
+  rating?: number;
+  review_count?: number;
+  last_seen_at?: string;
 }
 
 export interface Event {
@@ -85,6 +92,13 @@ export interface Event {
   images: string[];
   category: string;
   featured: boolean;
+  source?: string;
+  source_id?: string;
+  source_url?: string;
+  phone?: string;
+  rating?: number;
+  review_count?: number;
+  last_seen_at?: string;
 }
 
 export interface Testimonial {
