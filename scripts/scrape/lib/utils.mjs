@@ -41,6 +41,14 @@ export const CITIES_BY_STATE = {
   ],
 };
 
+export const STATE_NAMES = {
+  CA: "California",
+  TX: "Texas",
+  FL: "Florida",
+  NY: "New York",
+  IL: "Illinois",
+};
+
 export const USER_AGENT =
   "AlphaPrimus/1.0 (https://github.com/AmmarJamshed/alpha-primus; provider-sync@alpha-primus.com)";
 

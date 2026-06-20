@@ -18,7 +18,6 @@ const args = Object.fromEntries(
 );
 
 const NPI_PER_STATE = parseInt(args["npi-per-state"] ?? "100", 10);
-const SEARCH_PER_STATE = parseInt(args["search-per-state"] ?? "30", 10);
 const SKIP_NPI = args["skip-npi"] === "true";
 const SKIP_SEARCH = args["skip-search"] === "true";
 
@@ -119,8 +118,8 @@ async function main() {
   console.log("Source 1: CMS NPI Registry (licensed therapists & counselors)");
   const npi = SKIP_NPI ? [] : await scrapeNpi({ perState: NPI_PER_STATE });
 
-  console.log("\nSource 2: SerpAPI Google Maps (coaches, clinics, support groups, wellness)");
-  const search = SKIP_SEARCH ? [] : await scrapeSerpApi({ perState: SEARCH_PER_STATE });
+  console.log("\nSource 2: SerpAPI Google Maps (one search per category per state)");
+  const search = SKIP_SEARCH ? [] : await scrapeSerpApi();
 
   const scraped = [...npi, ...search];
   const merged = mergeProviders(existing, scraped);

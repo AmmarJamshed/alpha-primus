@@ -58,12 +58,10 @@ Automated bi-weekly sync via GitHub Actions (`.github/workflows/bi-weekly-provid
 
 Set `SERPAPI_KEY` in GitHub repo secrets and locally in `.env.local` for sync runs.
 
-```bash
-# Full sync (both sources)
-npm run sync:providers
+Each sync uses **90 SerpAPI calls** (18 categories × 5 states, one search each) plus free NPI Registry calls — ~180/month on bi-weekly schedule.
 
-# Custom limits (~80 SerpAPI calls per run on default settings — fits free tier)
-node scripts/sync-providers.mjs --npi-per-state=100 --search-per-state=30
+```bash
+npm run sync:providers
 ```
 
 Manual CSV/JSON import:

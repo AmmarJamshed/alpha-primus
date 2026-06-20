@@ -1,6 +1,6 @@
 import {
-  CITIES_BY_STATE,
   STATES,
+  STATE_NAMES,
   dedupeKey,
   formatPhone,
   formatZip,
@@ -12,13 +12,29 @@ import {
   titleCase,
 } from "../lib/utils.mjs";
 
-const SEARCHES = [
+/**
+ * One SerpAPI Google Maps search per category per state.
+ * Therapists are covered by the NPI Registry — not duplicated here.
+ */
+export const CATEGORY_SEARCHES = [
+  { q: "mental health clinic", category: "Mental Health Clinics", subcategory: "Outpatient Care" },
   { q: "life coach", category: "Life Coaches", subcategory: "Personal Coaching" },
   { q: "executive coach", category: "Executive Coaches", subcategory: "Leadership Coaching" },
-  { q: "support group", category: "Support Groups", subcategory: "Community Support" },
-  { q: "wellness center", category: "Wellness Centers", subcategory: "Holistic Wellness" },
-  { q: "mental health clinic", category: "Mental Health Clinics", subcategory: "Outpatient Care" },
   { q: "career coach", category: "Career Coaches", subcategory: "Career Development" },
+  { q: "relationship coach", category: "Relationship Coaches", subcategory: "Couples & Relationships" },
+  { q: "support group", category: "Support Groups", subcategory: "Community Support" },
+  { q: "discussion circle", category: "Discussion Circles", subcategory: "Peer Discussion" },
+  { q: "men's support group", category: "Men's Groups", subcategory: "Brotherhood Circles" },
+  { q: "women's support group", category: "Women's Groups", subcategory: "Empowerment Circles" },
+  { q: "burnout recovery program", category: "Burnout Recovery Programs", subcategory: "Stress Recovery" },
+  { q: "leadership development program", category: "Leadership Programs", subcategory: "Leadership Training" },
+  { q: "mindfulness meditation center", category: "Mindfulness Programs", subcategory: "MBSR & Meditation" },
+  { q: "wellness center", category: "Wellness Centers", subcategory: "Holistic Wellness" },
+  { q: "personal development workshop", category: "Personal Development Programs", subcategory: "Self-Improvement" },
+  { q: "wellness retreat", category: "Wellness Retreats", subcategory: "Healing & Rejuvenation" },
+  { q: "leadership retreat", category: "Leadership Retreats", subcategory: "Leadership Intensive" },
+  { q: "personal growth retreat", category: "Growth Retreats", subcategory: "Transformation" },
+  { q: "wellness workshop community event", category: "Community Events", subcategory: "Local Gatherings" },
 ];
 
 function getApiKey() {
@@ -32,7 +48,6 @@ function getApiKey() {
 function parseAddress(address, stateHint) {
   if (!address) return { street: "", city: "", state: stateHint, zipcode: "" };
 
-  // e.g. "8663 Chalmers Dr, Los Angeles, CA 90035"
   const parts = address.split(",").map((p) => p.trim());
   if (parts.length >= 3) {
     const last = parts[parts.length - 1];
@@ -51,13 +66,11 @@ function parseAddress(address, stateHint) {
 }
 
 function hasVirtualServices(result) {
-  const extensions = result.extensions ?? [];
-  for (const ext of extensions) {
-    const services = ext.service_options ?? ext.service_options ?? [];
+  for (const ext of result.extensions ?? []) {
+    const services = ext.service_options ?? [];
     if (services.some((s) => /online|virtual|telehealth/i.test(s))) return true;
   }
-  if (result.types?.some((t) => /online/i.test(t))) return true;
-  return false;
+  return result.types?.some((t) => /online/i.test(t)) ?? false;
 }
 
 function resultToProvider(result, meta, stateHint, seenAt) {
@@ -72,7 +85,7 @@ function resultToProvider(result, meta, stateHint, seenAt) {
   if (!placeId) return null;
 
   const slug = `${slugify(name)}-${placeId.slice(-8)}`.slice(0, 100);
-  const city = parsed.city || titleCase(CITIES_BY_STATE[state]?.[0]?.name ?? "Unknown");
+  const city = parsed.city || titleCase(STATE_NAMES[state] ?? state);
   const lat = result.gps_coordinates?.latitude ?? 0;
   const lng = result.gps_coordinates?.longitude ?? 0;
 
@@ -91,7 +104,7 @@ function resultToProvider(result, meta, stateHint, seenAt) {
     id: `serp-${placeId}`,
     name: titleCase(name),
     slug,
-    description: `${titleCase(name)} provides ${meta.category.toLowerCase()} in ${city}, ${state}. Listed via Google Maps search results. Contact directly to verify credentials and availability.`,
+    description: `${titleCase(name)} provides ${meta.category.toLowerCase()} in ${city}, ${state}. Listed via Google Maps. Contact directly to verify credentials and availability.`,
     category: meta.category,
     subcategory: meta.subcategory,
     website,
@@ -115,9 +128,7 @@ function resultToProvider(result, meta, stateHint, seenAt) {
     review_count: result.reviews ?? 0,
     source: "serpapi_google_maps",
     source_id: placeId,
-    source_url: result.reviews_link
-      ? `https://www.google.com/maps/place/?q=place_id:${placeId}`
-      : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}&query_place_id=${placeId}`,
+    source_url: `https://www.google.com/maps/place/?q=place_id:${placeId}`,
     last_seen_at: seenAt,
     created_at: seenAt,
     updated_at: seenAt,
@@ -125,9 +136,12 @@ function resultToProvider(result, meta, stateHint, seenAt) {
   };
 }
 
-async function searchMaps(query, city, state) {
+/** Single search: "{query} in {State Name}" */
+async function searchMapsCategory(query, stateCode) {
   const apiKey = getApiKey();
-  const q = `${query} ${city} ${state}`;
+  const stateName = STATE_NAMES[stateCode];
+  const q = `${query} in ${stateName}`;
+
   const url = new URL("https://serpapi.com/search.json");
   url.searchParams.set("engine", "google_maps");
   url.searchParams.set("q", q);
@@ -146,50 +160,47 @@ async function searchMaps(query, city, state) {
   return data.local_results ?? [];
 }
 
-export async function scrapeSerpApi({ perState = 30, maxCities = 1 } = {}) {
+export async function scrapeSerpApi() {
   const seenAt = nowIso();
   const providers = new Map();
   const dedupe = new Set();
   let apiCalls = 0;
+  const byState = Object.fromEntries(STATES.map((s) => [s, 0]));
 
   for (const state of STATES) {
-    let stateCount = 0;
-    const cities = (CITIES_BY_STATE[state] ?? []).slice(0, maxCities);
+    for (const search of CATEGORY_SEARCHES) {
+      try {
+        apiCalls++;
+        const results = await searchMapsCategory(search.q, state);
 
-    for (const city of cities) {
-      if (stateCount >= perState) break;
+        for (const result of results) {
+          const provider = resultToProvider(result, search, state, seenAt);
+          if (!provider) continue;
+          if (dedupe.has(provider._dedupe_key)) continue;
 
-      for (const search of SEARCHES) {
-        if (stateCount >= perState) break;
+          const key = providerKey("serpapi_google_maps", provider.source_id);
+          if (providers.has(key)) continue;
 
-        try {
-          apiCalls++;
-          const results = await searchMaps(search.q, city.name, state);
-
-          for (const result of results) {
-            const provider = resultToProvider(result, search, state, seenAt);
-            if (!provider) continue;
-            if (dedupe.has(provider._dedupe_key)) continue;
-
-            const key = providerKey("serpapi_google_maps", provider.source_id);
-            if (providers.has(key)) continue;
-
-            dedupe.add(provider._dedupe_key);
-            providers.set(key, provider);
-            stateCount++;
-            if (stateCount >= perState) break;
-          }
-        } catch (err) {
-          console.warn(`  SerpAPI warning ${state}/${city.name}/${search.q}: ${err.message}`);
+          dedupe.add(provider._dedupe_key);
+          providers.set(key, provider);
+          byState[state]++;
         }
 
-        await sleep(500);
+        console.log(
+          `  SerpAPI ${state} / ${search.category}: ${results.length} results`,
+        );
+      } catch (err) {
+        console.warn(`  SerpAPI warning ${state}/${search.category}: ${err.message}`);
       }
-    }
 
-    console.log(`  SerpAPI ${state}: ${stateCount} providers`);
+      await sleep(400);
+    }
   }
 
-  console.log(`  SerpAPI total API calls: ${apiCalls}`);
+  console.log(`  SerpAPI total: ${providers.size} providers, ${apiCalls} API calls`);
+  console.log(`  SerpAPI by state:`, byState);
+
   return [...providers.values()];
 }
+
+export { CATEGORY_SEARCHES as SEARCHES };

@@ -10,10 +10,6 @@ on:
         description: "NPI providers per launch state"
         required: false
         default: "100"
-      search_per_state:
-        description: "SerpAPI Google Maps providers per launch state"
-        required: false
-        default: "30"
 
 permissions:
   contents: write
@@ -37,8 +33,7 @@ jobs:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: |
           node scripts/sync-providers.mjs \
-            --npi-per-state=${{ github.event.inputs.npi_per_state || '100' }} \
-            --search-per-state=${{ github.event.inputs.search_per_state || '30' }}
+            --npi-per-state=${{ github.event.inputs.npi_per_state || '100' }}
 
       - name: Upload sync report
         uses: actions/upload-artifact@v4
