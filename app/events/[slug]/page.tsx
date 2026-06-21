@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Calendar, Clock, ExternalLink, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { EntityViewTracker } from "@/components/activity/entity-view-tracker";
 import { getAllEventSlugs, getEventBySlug } from "@/lib/data";
 import { createMetadata } from "@/lib/seo";
 
@@ -36,6 +37,13 @@ export default async function EventPage({ params }: EventPageProps) {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+      <EntityViewTracker
+        eventType="event_view"
+        entityType="event"
+        entityId={event.id}
+        entitySlug={event.slug}
+        metadata={{ category: event.category, state: event.state }}
+      />
       <div className="relative aspect-[21/9] overflow-hidden rounded-3xl bg-muted">
         <Image
           src={event.images[0]}

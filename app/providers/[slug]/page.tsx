@@ -11,6 +11,7 @@ import {
   Video,
 } from "lucide-react";
 import { ProviderCard } from "@/components/providers/provider-card";
+import { EntityViewTracker } from "@/components/activity/entity-view-tracker";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -55,6 +56,13 @@ export default async function ProviderPage({ params }: ProviderPageProps) {
 
   return (
     <>
+      <EntityViewTracker
+        eventType="provider_view"
+        entityType="provider"
+        entityId={provider.id}
+        entitySlug={provider.slug}
+        metadata={{ category: provider.category, state: provider.state }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -15,6 +15,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Reveal } from "@/components/ui/reveal";
 import { DISCOVERY_CARDS } from "@/lib/constants";
+import { trackActivity } from "@/lib/activity/client";
 import { cn } from "@/lib/utils";
 
 const iconMap = {
@@ -48,7 +49,17 @@ export function GuidedDiscovery() {
               iconMap[card.icon as keyof typeof iconMap] ?? HeartHandshake;
             return (
               <Reveal key={card.title} delay={i * 75}>
-                <Link href={card.href} className="group block h-full">
+                <Link
+                  href={card.href}
+                  className="group block h-full"
+                  onClick={() =>
+                    void trackActivity({
+                      event_type: "category_click",
+                      entity_type: "category",
+                      metadata: { category: card.title, href: card.href },
+                    })
+                  }
+                >
                   <Card
                     className={cn(
                       "relative h-full overflow-hidden border-border/60 transition-all duration-300",

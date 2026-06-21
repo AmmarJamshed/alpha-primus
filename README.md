@@ -60,6 +60,35 @@ Alpha Primus installs as a PWA on Android and iOS after deployment over HTTPS.
 
 PWA assets are generated at build time (`npm run build` uses webpack + Serwist). Service worker is disabled in `npm run dev` so local development is not cached.
 
+## AI Wellness Guide (Groq + Supabase)
+
+Personalized recommendations at `/guide` based on:
+- **Activity tracking** — searches, provider/retreat/event views, category clicks
+- **Wellness check-ins** — mood, stress, challenges
+- **Groq AI** — suggests therapists, events, retreats from real catalog data
+
+### Supabase setup
+
+1. Run migration `supabase/migrations/002_user_activity_ai.sql` in the Supabase SQL editor (or `supabase db push`)
+2. Add env vars to Vercel/local:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY` (server only — activity writes)
+   - `GROQ_API_KEY` (server only — never `NEXT_PUBLIC_`)
+
+Tables created: `user_profiles`, `user_activity_events`, `user_wellness_checkins`, `user_ai_recommendations` (all with RLS).
+
+### How it works
+
+| Layer | Role |
+|-------|------|
+| Browser | Anonymous `session_id` in localStorage + optional Supabase auth |
+| `/api/activity` | Logs browsing events to Supabase |
+| `/api/wellness-checkin` | Saves mood/stress check-ins |
+| `/api/ai/recommendations` | Reads activity + Groq → personalized next steps |
+
+Sign in at `/auth/login` to attach activity to your account across devices.
+
 ## Discovery & Import Pipeline
 
 Automated bi-weekly sync via GitHub Actions (`.github/workflows/bi-weekly-provider-sync.yml`):

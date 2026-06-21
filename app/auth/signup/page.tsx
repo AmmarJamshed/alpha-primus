@@ -1,8 +1,5 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { AuthForm } from "@/components/auth/auth-form";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
@@ -17,8 +14,8 @@ export default function SignupPage() {
         Join Alpha Primus
       </h1>
       <p className="mt-2 text-center text-muted-foreground">
-        Create an account to save providers, leave reviews, and track your
-        growth journey.
+        Create an account to save providers, sync your AI wellness guide, and track
+        your growth journey.
       </p>
 
       <Card className="mt-8">
@@ -26,29 +23,7 @@ export default function SignupPage() {
           <CardTitle>Create Account</CardTitle>
         </CardHeader>
         <CardContent>
-          <form className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
-              <Input id="name" required />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" required />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" required />
-            </div>
-            <Button type="submit" className="w-full rounded-full bg-[#0B1F3A]">
-              Create Account
-            </Button>
-          </form>
-          <p className="mt-4 text-center text-sm text-muted-foreground">
-            Already have an account?{" "}
-            <Link href="/auth/login" className="text-[#0B1F3A] underline">
-              Sign in
-            </Link>
-          </p>
+          <AuthForm mode="signup" />
         </CardContent>
       </Card>
     </div>

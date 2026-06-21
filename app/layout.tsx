@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { ActivityTracker } from "@/components/activity/activity-tracker";
 import { InstallPrompt } from "@/components/pwa/install-prompt";
 import { BRAND, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
@@ -61,6 +62,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <InstallPrompt />
+        <ActivityTracker />
       </body>
     </html>
   );
