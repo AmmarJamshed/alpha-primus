@@ -5,7 +5,7 @@ import { GuidedDiscovery } from "@/components/home/guided-discovery";
 import { HeroSection } from "@/components/home/hero-section";
 import { PopularCategories } from "@/components/home/popular-categories";
 import { ProviderClaimCta } from "@/components/home/provider-claim-cta";
-import { TestimonialsSection } from "@/components/home/testimonials-section";
+import { TestimonialsCarousel } from "@/components/home/testimonials-carousel";
 import {
   getFeaturedCategories,
   getFeaturedEvents,
@@ -28,7 +28,7 @@ export default function HomePage() {
       <FeaturedRetreats retreats={featuredRetreats} />
       <FeaturedEvents events={featuredEvents} />
       <PopularCategories categories={popularCategories} />
-      <TestimonialsSection testimonials={testimonials.slice(0, 4)} />
+      <TestimonialsCarousel testimonials={testimonials.slice(0, 6)} />
       <ProviderClaimCta />
     </>
   );

@@ -8,7 +8,7 @@ import type { Retreat } from "@/lib/types";
 export function RetreatCard({ retreat }: { retreat: Retreat }) {
   return (
     <Link href={`/retreats/${retreat.slug}`} className="group block h-full">
-      <Card className="h-full overflow-hidden border-border/60 transition-all hover:-translate-y-1 hover:shadow-lg">
+      <Card className="h-full overflow-hidden border-border/60 transition-all duration-300 hover:-translate-y-1 hover:border-[#D4AF37]/30 hover:shadow-lg active:scale-[0.99]">
         <div className="relative aspect-[16/10] overflow-hidden bg-muted">
           <Image
             src={retreat.images[0]}
