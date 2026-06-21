@@ -1,12 +1,10 @@
-import {
-  events,
-  getProviderBySlug,
-  getRetreatBySlug,
-  getEventBySlug,
-  providers,
-  retreats,
-} from "@/lib/data";
 import type { ActivityEventRow, WellnessCheckinRow } from "@/lib/activity/types";
+
+function getData() {
+  // Lazy-load large JSON catalogs only when AI insights run (server API routes).
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  return require("@/lib/data") as typeof import("@/lib/data");
+}
 
 export interface ActivityInsights {
   totalEvents: number;
@@ -24,6 +22,7 @@ export function analyzeActivity(
   rows: ActivityEventRow[],
   checkin: WellnessCheckinRow | null,
 ): ActivityInsights {
+  const { getProviderBySlug, getRetreatBySlug, getEventBySlug } = getData();
   const categoryCounts: Record<string, number> = {};
   const stateCounts: Record<string, number> = {};
   const recentSearches: string[] = [];
@@ -116,6 +115,7 @@ export function analyzeActivity(
 }
 
 export function buildCatalogContext(insights: ActivityInsights) {
+  const { providers, retreats, events } = getData();
   const topState =
     Object.entries(insights.stateCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ??
     "CA";

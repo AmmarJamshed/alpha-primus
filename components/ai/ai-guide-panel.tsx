@@ -51,6 +51,12 @@ export function AiGuidePanel() {
     concern_signals: string[];
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [lastCheckin, setLastCheckin] = useState<{
+    mood_score: number;
+    stress_level: number;
+    challenges: string[];
+    notes?: string;
+  } | null>(null);
 
   async function generateRecommendations() {
     setLoading(true);
@@ -59,16 +65,34 @@ export function AiGuidePanel() {
       const res = await fetch("/api/ai/recommendations", {
         method: "POST",
         headers: activityHeaders(),
+        body: JSON.stringify({ checkin: lastCheckin }),
       });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Could not generate recommendations");
+
+      let data: { error?: string } & Partial<AiRecommendationResult> = {};
+      const text = await res.text();
+      try {
+        data = text ? (JSON.parse(text) as typeof data) : {};
+      } catch {
+        setError(
+          res.ok
+            ? "Invalid response from server"
+            : `Server error (${res.status}). Check that GROQ_API_KEY and Supabase are configured in Vercel.`,
+        );
         return;
       }
-      setResult(data);
-      setActivitySummary(data.activity_summary ?? null);
-    } catch {
-      setError("Network error. Please try again.");
+
+      if (!res.ok) {
+        setError(data.error ?? `Could not generate recommendations (${res.status})`);
+        return;
+      }
+      setResult(data as AiRecommendationResult);
+      setActivitySummary(
+        (data as { activity_summary?: typeof activitySummary }).activity_summary ?? null,
+      );
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Network error. Please try again.",
+      );
     } finally {
       setLoading(false);
     }
@@ -91,7 +115,10 @@ export function AiGuidePanel() {
           </p>
         </CardHeader>
         <CardContent>
-          <WellnessCheckinForm />
+          <WellnessCheckinForm
+            onSaved={setLastCheckin}
+            onValuesChange={setLastCheckin}
+          />
         </CardContent>
       </Card>
 

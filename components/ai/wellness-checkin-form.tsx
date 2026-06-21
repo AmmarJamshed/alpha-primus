@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -10,16 +10,36 @@ import { WELLNESS_CHALLENGES } from "@/lib/activity/types";
 import { cn } from "@/lib/utils";
 
 interface WellnessCheckinFormProps {
-  onComplete?: () => void;
+  onSaved?: (data: {
+    mood_score: number;
+    stress_level: number;
+    challenges: string[];
+    notes?: string;
+  }) => void;
+  onValuesChange?: (data: {
+    mood_score: number;
+    stress_level: number;
+    challenges: string[];
+    notes?: string;
+  }) => void;
 }
 
-export function WellnessCheckinForm({ onComplete }: WellnessCheckinFormProps) {
+export function WellnessCheckinForm({ onSaved, onValuesChange }: WellnessCheckinFormProps) {
   const [mood, setMood] = useState(3);
   const [stress, setStress] = useState(3);
   const [challenges, setChallenges] = useState<string[]>([]);
   const [notes, setNotes] = useState("");
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    onValuesChange?.({
+      mood_score: mood,
+      stress_level: stress,
+      challenges,
+      notes: notes.trim() || undefined,
+    });
+  }, [mood, stress, challenges, notes, onValuesChange]);
 
   function toggleChallenge(id: string) {
     setChallenges((prev) =>
@@ -43,7 +63,12 @@ export function WellnessCheckinForm({ onComplete }: WellnessCheckinFormProps) {
       });
       if (res.ok) {
         setSaved(true);
-        onComplete?.();
+        onSaved?.({
+          mood_score: mood,
+          stress_level: stress,
+          challenges,
+          notes: notes.trim() || undefined,
+        });
       }
     } finally {
       setSaving(false);

@@ -13,9 +13,17 @@ export function getSessionIdFromRequest(request: Request): string | null {
 }
 
 export async function getAuthUserId(): Promise<string | null> {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getUser();
-  return data.user?.id ?? null;
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return null;
+  }
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase.auth.getUser();
+    if (error) return null;
+    return data.user?.id ?? null;
+  } catch {
+    return null;
+  }
 }
 
 export async function insertActivityEvent(
