@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE } from "@/lib/constants";
+import { getSiteUrl } from "@/lib/site-url";
 
 export function createMetadata({
   title,
@@ -14,13 +15,14 @@ export function createMetadata({
 }): Metadata {
   const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} — ${SITE_TAGLINE}`;
   const desc = description ?? SITE_DESCRIPTION;
-  const url = `https://alphaprimus.com${path}`;
+  const siteUrl = getSiteUrl();
+  const url = `${siteUrl}${path}`;
   const ogImage = image ?? "/og-default.png";
 
   return {
     title: fullTitle,
     description: desc,
-    metadataBase: new URL("https://alphaprimus.com"),
+    metadataBase: new URL(siteUrl),
     openGraph: {
       title: fullTitle,
       description: desc,
@@ -58,7 +60,7 @@ export function providerJsonLd(provider: {
     "@type": "LocalBusiness",
     name: provider.name,
     description: provider.description,
-    url: `https://alphaprimus.com/providers/${provider.slug}`,
+    url: `${getSiteUrl()}/providers/${provider.slug}`,
     telephone: provider.phone,
     image: provider.images[0],
     address: {

@@ -45,7 +45,20 @@ cp .env.example .env.local
 1. Push to GitHub
 2. Import project in [vercel.com](https://vercel.com)
 3. Add environment variables from `.env.example`
-4. Deploy
+4. Set `NEXT_PUBLIC_SITE_URL` to your production URL (required for PWA scope and SEO)
+5. Deploy
+
+## Progressive Web App (PWA)
+
+Alpha Primus installs as a PWA on Android and iOS after deployment over HTTPS.
+
+**Users can install:**
+- **Android (Chrome):** Menu → *Install app*, or use the in-app install banner
+- **iPhone (Safari):** Share → *Add to Home Screen*
+
+**Features:** home-screen icon, standalone layout, offline fallback page, cached pages for faster repeat visits.
+
+PWA assets are generated at build time (`npm run build` uses webpack + Serwist). Service worker is disabled in `npm run dev` so local development is not cached.
 
 ## Discovery & Import Pipeline
 
